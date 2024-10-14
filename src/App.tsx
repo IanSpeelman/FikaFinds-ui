@@ -1,18 +1,19 @@
 import './App.css'
+import Home from './Pages/Home/index.tsx'
 import Layout from "./Pages/Layout/index.tsx"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 function App() {
 
-  return (
+    return (
         <BrowserRouter>
             <Routes>
                 <Route element={<Layout />} >
-                    <Route path="/" element={<h1>hi there</h1>} />
+                    <Route path="/" element={<Home />} />
                 </Route>
             </Routes>
         </BrowserRouter>
-  )
+    )
 }
 
 export default App

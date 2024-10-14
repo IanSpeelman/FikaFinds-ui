@@ -8,8 +8,13 @@
 :root{
     --black-100: #282828;
     --primary-dark: #354A24;
+    --primary-light: #5C7F3F;
+    --white: #F2F2F2;
 }
 
+body{
+    background-color: var(--white);
+}
 
 
 
