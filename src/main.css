@@ -7,7 +7,8 @@
 
 :root{
     --black-100: #282828;
-    --black-10: rgba(40,40,40,.10);
+    --black-70: rgba(40,40,40,.70);
+    --black-10: rgba(40,40,40,.1);
 
     --primary-dark: #354A24;
     --primary-light: #5C7F3F;

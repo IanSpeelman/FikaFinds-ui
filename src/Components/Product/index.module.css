@@ -1,0 +1,22 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: fit-content;
+
+}
+
+.image{
+    width: 232px;
+    height: 232px;
+}
+
+.category{
+    font-size: .8em;
+    color: var(--black-70);
+}
+
+.price{
+    font-size: .9em;
+    color: var(--black-70);
+}
