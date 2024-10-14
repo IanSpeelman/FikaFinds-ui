@@ -7,8 +7,11 @@
 
 :root{
     --black-100: #282828;
+    --black-10: rgba(40,40,40,.10);
+
     --primary-dark: #354A24;
     --primary-light: #5C7F3F;
+
     --white: #F2F2F2;
 }
 
