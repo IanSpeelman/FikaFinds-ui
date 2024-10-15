@@ -2,10 +2,11 @@
 display: flex;
 padding: 256px;
 margin-top: 64px;
-padding-top: 64px;
-padding-bottom: 64px;
+padding-top: 128px;
+padding-bottom: 128px;
 border-top: 1px solid var(--black-10);
 justify-content: space-between;
+gap: 128px;
 }
 
 .tag{
@@ -30,14 +31,3 @@ justify-content: space-between;
     fill:  var(--white);
 }
 
-.text{
-
-}
-
-.header{
-
-}
-
-.message{
-
-}
