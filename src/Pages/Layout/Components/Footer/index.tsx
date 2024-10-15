@@ -7,10 +7,10 @@ export default function Footer() {
             <div className={styles.container}>
                 <nav className={styles.nav}>
                     <ul className={styles.ul}>
-                        <li className={styles.li}><a className={styles.link} href='#'>HOME</a></li>
-                        <li className={styles.li}><a className={styles.link} href='#'>ABOUT</a></li>
-                        <li className={styles.li}><a className={styles.link} href='#'>SHOP</a></li>
-                        <li className={styles.li}><a className={styles.link} href='#'>CONTACT</a></li>
+                        <li className={styles.li}><a className={styles.link} href='/'>HOME</a></li>
+                        <li className={styles.li}><a className={styles.link} href='about'>ABOUT</a></li>
+                        <li className={styles.li}><a className={styles.link} href='shop'>SHOP</a></li>
+                        <li className={styles.li}><a className={styles.link} href='contact'>CONTACT</a></li>
                     </ul>
                 </nav>
                 <h1 className={styles.title}>FIKA FINDS</h1>
@@ -19,3 +19,4 @@ export default function Footer() {
         </footer>
     )
 }
+
