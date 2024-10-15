@@ -4,7 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url('../../../public/assets/images/background.jpg');
+    background-image: url('/assets/images/background.jpg');
     background-position: 50% 60%;
     margin-top: -100px;
     z-index: -100;
