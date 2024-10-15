@@ -3,7 +3,7 @@ import styles from './index.module.css'
 
 export default function Footer() {
     return (
-        <header>
+        <footer>
             <div className={styles.container}>
                 <nav className={styles.nav}>
                     <ul className={styles.ul}>
@@ -16,6 +16,6 @@ export default function Footer() {
                 <h1 className={styles.title}>FIKA FINDS</h1>
                 <p>Copyright © 2024 Fika Finds</p>
             </div>
-        </header>
+        </footer>
     )
 }
