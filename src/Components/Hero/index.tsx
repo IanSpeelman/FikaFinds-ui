@@ -4,7 +4,7 @@ type HeroProps = {
     size?: 'medium',
     header: string,
     subheader?: string,
-    buttonText: string
+    buttonText?: string
 }
 
 export default function Hero({ size, header, subheader, buttonText }: HeroProps) {
