@@ -1,0 +1,43 @@
+.container{
+display: flex;
+padding: 256px;
+margin-top: 64px;
+padding-top: 64px;
+padding-bottom: 64px;
+border-top: 1px solid var(--black-10);
+justify-content: space-between;
+}
+
+.tag{
+    display: flex;
+    gap: 16px;;
+    align-items: center;
+}
+
+.backdrop{
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    background-color: var(--primary-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon{
+    width: 16px;
+    height: 16px;
+    fill:  var(--white);
+}
+
+.text{
+
+}
+
+.header{
+
+}
+
+.message{
+
+}
