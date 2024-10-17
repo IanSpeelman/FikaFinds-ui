@@ -4,6 +4,7 @@ import Contact from './Pages/Contact/index.tsx'
 import Home from './Pages/Home/index.tsx'
 import Layout from "./Pages/Layout/index.tsx"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Shop from './Pages/Shop/index.tsx'
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
                 <Route element={<Layout />} >
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/shop" element={<Shop />} />
                     <Route path="/contact" element={<Contact />} />
                 </Route>
             </Routes>
