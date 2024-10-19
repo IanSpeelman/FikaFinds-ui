@@ -7,10 +7,12 @@
 
 :root{
     --black-100: #282828;
+    --black-90: rgba(40,40,40,.90);
     --black-70: rgba(40,40,40,.70);
     --black-20: rgba(40,40,40,.2);
     --black-10: rgba(40,40,40,.1);
 
+    --darken: rgba(0,0,0,.5);
     --primary-dark: #354A24;
     --primary-light: #5C7F3F;
 
