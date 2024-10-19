@@ -1,0 +1,32 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 32px;
+    height: 100%;
+    width: 100%;
+}
+
+.quote{
+    width: 32px;
+    height: 32px;
+    fill: var(--primary-dark)
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+}
+
+.image{
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+
+}
+
+.name{
+
+}

@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    gap: 64px;
+    padding: 128px;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.line{
+    min-height: 100%;
+    min-width: 1px;
+    background-color: var(--black-20);
+}

@@ -1,0 +1,20 @@
+.container{
+    min-width: 60%;
+}
+.toprow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.select{
+    background-color: white;
+    border: 1px solid var(--black-20);
+    padding: 16px;
+}
+.products{
+    padding-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+

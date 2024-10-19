@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 32px;
+    padding: 0 32px;
+}
+.image{
+    height: 64px;
+    width: 64px;
+    margin-right: 32px;
+}
+.middle{
+    flex: 1 1 auto;
+}
+.product{
+}
+.amount{
+    color: var(--black-70);
+}
+.remove{
+    height: 32px;
+    width: 32px;
+    border-radius: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--primary-light);
+    color: var(--black-90);
+
+}
