@@ -24,4 +24,4 @@ jobs:
           cache-to: type=gha, mode=max
 
       - name: run tests in docker
-        run: docker run ${{ env.DOCKER_IMAGE_NAME }}:latest npm test
+        run: docker run ${{ env.DOCKER_IMAGE_NAME }}:latest npm run github-test

@@ -6,6 +6,7 @@
     "scripts": {
         "dev": "vite --host",
         "testui": "vitest --ui",
+        "github-test": "vitest --run",
         "test": "vitest",
         "build": "tsc -b && vite build",
         "lint": "eslint .",
