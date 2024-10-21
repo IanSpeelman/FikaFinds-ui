@@ -1,11 +1,12 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import Cart from './Components/Cart'
 import styles from './index.module.css'
 
 
 export default function Header() {
 
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
 
     function handleOpen() {
         setIsOpen(true)
@@ -18,10 +19,10 @@ export default function Header() {
                 <h1 className={styles.title}>FIKA FINDS</h1>
                 <nav className={styles.nav}>
                     <ul className={styles.ul}>
-                        <li className={styles.li}><a className={styles.link} href='/'>HOME</a></li>
-                        <li className={styles.li}><a className={styles.link} href='about'>ABOUT</a></li>
-                        <li className={styles.li}><a className={styles.link} href='shop'>SHOP</a></li>
-                        <li className={styles.li}><a className={styles.link} href='contact'>CONTACT</a></li>
+                        <li className={styles.li}><Link to="/" className={styles.link}>HOME</Link></li>
+                        <li className={styles.li}><Link to="/about" className={styles.link}>ABOUT</Link></li>
+                        <li className={styles.li}><Link to="/shop" className={styles.link}>SHOP</Link></li>
+                        <li className={styles.li}><Link to="/contact" className={styles.link}>CONTACT</Link></li>
                         <div className={styles.icons}>
                             <div className={styles.icon} onClick={handleOpen}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-basket3" viewBox="0 0 16 16">
