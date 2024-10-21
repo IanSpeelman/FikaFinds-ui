@@ -1,4 +1,5 @@
 import styles from './index.module.css'
+import { Link } from 'react-router-dom'
 
 
 export default function Footer() {
@@ -7,10 +8,10 @@ export default function Footer() {
             <div className={styles.container}>
                 <nav className={styles.nav}>
                     <ul className={styles.ul}>
-                        <li className={styles.li}><a className={styles.link} href='/'>HOME</a></li>
-                        <li className={styles.li}><a className={styles.link} href='about'>ABOUT</a></li>
-                        <li className={styles.li}><a className={styles.link} href='shop'>SHOP</a></li>
-                        <li className={styles.li}><a className={styles.link} href='contact'>CONTACT</a></li>
+                        <li className={styles.li}><Link to="/" className={styles.link}>HOME</Link></li>
+                        <li className={styles.li}><Link to="/about" className={styles.link}>ABOUT</Link></li>
+                        <li className={styles.li}><Link to="/shop" className={styles.link}>SHOP</Link></li>
+                        <li className={styles.li}><Link to="/contact" className={styles.link}>CONTACT</Link></li>
                     </ul>
                 </nav>
                 <h1 className={styles.title}>FIKA FINDS</h1>
@@ -19,4 +20,3 @@ export default function Footer() {
         </footer>
     )
 }
-

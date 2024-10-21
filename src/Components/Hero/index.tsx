@@ -13,7 +13,7 @@ export default function Hero({ size, header, subheader, buttonText, action }: He
         <div className={`${styles.container} ${size === 'medium' ? styles.containerMedium : styles.containerLarge}`}>
             <div className={styles.content}>
                 <h2 className={styles.header}>{header}</h2>
-                <h3 className={styles.subheader}>{subheader}</h3>
+                {subheader && <h3 className={styles.subheader}>{subheader}</h3>}
                 {buttonText && <a href={action} className={styles.button}>{buttonText}</a>}
             </div>
         </div>
