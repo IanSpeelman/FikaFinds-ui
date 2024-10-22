@@ -1,12 +1,16 @@
 import Product from "../../../../Components/Product"
+import { product } from "../../../../utils/types"
 import styles from './index.module.css'
 
-export default function ProductContainer() {
-    const results = [1, 2, 3]
+type ProductContainerProps = {
+    products: product[] | []
+}
+
+export default function ProductContainer({ products }: ProductContainerProps) {
     return (
         <div className={styles.container}>
             <div className={styles.toprow}>
-                <p className={styles.results}>Showing all {results.length} results</p>
+                <p className={styles.results}>Showing all {products?.length} results</p>
                 <select className={styles.select}>
                     <option value="pricedesc">price descending</option>
                     <option value="priceasc">price ascending</option>
@@ -17,16 +21,9 @@ export default function ProductContainer() {
                 </select>
             </div>
             <div className={styles.products}>
-                <Product product="Dalahäst" price="99 SEK" category="Dalarna" image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhik6ntKzUrb7GbmRt0laNt4TDv7p8sdfywfGt9JLMf_ZDrvuJWV6o_v4yFe42PP-luPrrAe-jl7Kg9IYPsLVEbHDvViAcW7CnyQeUWkF52g_NoB7o0dU68g" />
-                <Product product="Dalahäst" price="99 SEK" category="Dalarna" image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhik6ntKzUrb7GbmRt0laNt4TDv7p8sdfywfGt9JLMf_ZDrvuJWV6o_v4yFe42PP-luPrrAe-jl7Kg9IYPsLVEbHDvViAcW7CnyQeUWkF52g_NoB7o0dU68g" />
-                <Product product="Dalahäst" price="99 SEK" category="Dalarna" image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhik6ntKzUrb7GbmRt0laNt4TDv7p8sdfywfGt9JLMf_ZDrvuJWV6o_v4yFe42PP-luPrrAe-jl7Kg9IYPsLVEbHDvViAcW7CnyQeUWkF52g_NoB7o0dU68g" />
-                <Product product="Dalahäst" price="99 SEK" category="Dalarna" image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhik6ntKzUrb7GbmRt0laNt4TDv7p8sdfywfGt9JLMf_ZDrvuJWV6o_v4yFe42PP-luPrrAe-jl7Kg9IYPsLVEbHDvViAcW7CnyQeUWkF52g_NoB7o0dU68g" />
-                <Product product="Dalahäst" price="99 SEK" category="Dalarna" image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhik6ntKzUrb7GbmRt0laNt4TDv7p8sdfywfGt9JLMf_ZDrvuJWV6o_v4yFe42PP-luPrrAe-jl7Kg9IYPsLVEbHDvViAcW7CnyQeUWkF52g_NoB7o0dU68g" />
-                <Product product="Dalahäst" price="99 SEK" category="Dalarna" image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhik6ntKzUrb7GbmRt0laNt4TDv7p8sdfywfGt9JLMf_ZDrvuJWV6o_v4yFe42PP-luPrrAe-jl7Kg9IYPsLVEbHDvViAcW7CnyQeUWkF52g_NoB7o0dU68g" />
-                <Product product="Dalahäst" price="99 SEK" category="Dalarna" image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhik6ntKzUrb7GbmRt0laNt4TDv7p8sdfywfGt9JLMf_ZDrvuJWV6o_v4yFe42PP-luPrrAe-jl7Kg9IYPsLVEbHDvViAcW7CnyQeUWkF52g_NoB7o0dU68g" />
-                <Product product="Dalahäst" price="99 SEK" category="Dalarna" image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhik6ntKzUrb7GbmRt0laNt4TDv7p8sdfywfGt9JLMf_ZDrvuJWV6o_v4yFe42PP-luPrrAe-jl7Kg9IYPsLVEbHDvViAcW7CnyQeUWkF52g_NoB7o0dU68g" />
-                <Product product="Dalahäst" price="99 SEK" category="Dalarna" image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhik6ntKzUrb7GbmRt0laNt4TDv7p8sdfywfGt9JLMf_ZDrvuJWV6o_v4yFe42PP-luPrrAe-jl7Kg9IYPsLVEbHDvViAcW7CnyQeUWkF52g_NoB7o0dU68g" />
-                <Product product="Dalahäst" price="99 SEK" category="Dalarna" image="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhik6ntKzUrb7GbmRt0laNt4TDv7p8sdfywfGt9JLMf_ZDrvuJWV6o_v4yFe42PP-luPrrAe-jl7Kg9IYPsLVEbHDvViAcW7CnyQeUWkF52g_NoB7o0dU68g" />
+                {products.map(product => {
+                    return <Product key={product.id} product={product} />
+                })}
             </div>
         </div>
     )

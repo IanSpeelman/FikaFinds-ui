@@ -2,8 +2,16 @@ import styles from './index.module.css'
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { useState } from 'react';
+import { product } from '../../../../utils/types';
 
-export default function Filter() {
+
+type FilterProps = {
+    products: product[] | []
+    setProducts: React.SetStateAction<product[] | []>
+}
+
+
+export default function Filter({ products, setProducts }: FilterProps) {
     const minPrice = 0;
     const maxPrice = 100;
     const [range, setRange] = useState<{ min: number, max: number }>({ min: minPrice, max: maxPrice })
