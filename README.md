@@ -26,22 +26,22 @@ The application is part of a microservices architecture:
 **Linux/Mac:**
 
 ```bash
-mkdir fikafinds
-cd fikafinds
+mkdir FikaFinds
+cd FikaFinds
 ```
 
 **Windows (Command Prompt):**
 
 ```cmd
-mkdir fikafinds
-cd fikafinds
+mkdir FikaFinds
+cd FikaFinds
 ```
 
 ### 2. Clone Repositories
 
 ```bash
-git clone https://github.com/IanSpeelman/fikafinds-ui.git
-git clone https://github.com/IanSpeelman/fikafinds-products.git
+git clone https://github.com/IanSpeelman/FikaFinds-ui.git
+git clone https://github.com/IanSpeelman/FikaFinds-products.git
 ```
 
 ### 3. Environment Setup
@@ -59,13 +59,13 @@ VITE_PRODUCT_HOST=your_products_host
 **Linux/Mac:**
 
 ```bash
-cp .env fikafinds-ui/.env
+cp .env FikaFinds-ui/.env
 ```
 
 **Windows:**
 
 ```cmd
-copy .env fikafinds-ui\.env
+copy .env FikaFinds-ui\.env
 ```
 
 ### 4. Docker Compose Configuration
@@ -114,7 +114,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - "/home/meister/Documents/projects/FikaFinds/db:/var/lib/postgresql/data"
+      - "./db:/var/lib/postgresql/data"
     environment:
       POSTGRES_PASSWORD: ${DBPASS}
       POSTGRES_USER: ${DBUSER}
@@ -153,7 +153,7 @@ docker compose up --watch
 1. Install dependencies:
 
 ```bash
-cd fikafinds-ui
+cd FikaFinds-ui
 npm i
 ```
 
@@ -168,11 +168,11 @@ npm run dev
 Build the image:
 
 ```bash
-docker build -t fikafinds-ui .
+docker build -t FikaFinds-ui .
 ```
 
 Run the container:
 
 ```bash
-docker run -p 3000:3000 fikafinds-ui
+docker run -p 3000:3000 FikaFinds-ui
 ```
