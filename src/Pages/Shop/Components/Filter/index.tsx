@@ -1,19 +1,20 @@
 import styles from './index.module.css'
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { useState } from 'react';
+import { SetStateAction, useState } from 'react';
 import { product } from '../../../../utils/types';
 
 
 type FilterProps = {
     products: product[] | []
-    setProducts: React.SetStateAction<product[] | []>
+    setProducts: React.Dispatch<SetStateAction<product[] | []>>
 }
 
 
 export default function Filter({ products, setProducts }: FilterProps) {
     const minPrice = 0;
     const maxPrice = 100;
+    const [query, setQuery] = useState("")
     const [range, setRange] = useState<{ min: number, max: number }>({ min: minPrice, max: maxPrice })
 
     function checkMinValue(e: React.ChangeEvent<HTMLInputElement>) {
@@ -33,14 +34,17 @@ export default function Filter({ products, setProducts }: FilterProps) {
         }
     }
 
+    function handleQueryChange(e: React.ChangeEvent<HTMLInputElement>) {
+        setQuery(e.target.value)
+        const filteredProducts = products.filter(product => product.name.includes(query))
 
-
+    }
 
 
     return (
         <div className={styles.container}>
             <div className={styles.inputgroup}>
-                <input type="text" className={styles.input} id="seach" placeholder='Search Products' />
+                <input type="text" className={styles.input} value={query} onChange={(e) => handleQueryChange(e)} id="seach" placeholder='Search Products' />
                 <button className={styles.button}>
                     <svg xmlns="http://www.w3.org/2000/svg" className={styles.searchicon} viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z" /></svg>
                 </button>

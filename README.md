@@ -1,50 +1,178 @@
-# React + TypeScript + Vite
+# FikaFinds UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+FikaFinds UI is the frontend application for an e-commerce platform specializing in Swedish products and trinkets. This React-based application interfaces with various microservices to provide a complete shopping experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Architecture
 
-## Expanding the ESLint configuration
+The application is part of a microservices architecture:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [**FikaFinds UI (This repository)**](https://github.com/IanSpeelman/FikaFinds-ui): Frontend interface built with React and Node.js
+- [**Products Service**](https://github.com/IanSpeelman/FikaFinds-products): Handles product-related CRUD operations
+- **Authentication Service**: (Coming soon) Will handle user authentication
+- **Orders Service**: (Coming soon) Will manage order processing
 
-- Configure the top-level `parserOptions` property like this:
+## Prerequisites
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+- Node.js
+- Docker
+- Git
+
+## Quick Start
+
+### 1. Create Project Directory
+
+**Linux/Mac:**
+
+```bash
+mkdir fikafinds
+cd fikafinds
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+**Windows (Command Prompt):**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```cmd
+mkdir fikafinds
+cd fikafinds
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### 2. Clone Repositories
+
+```bash
+git clone https://github.com/IanSpeelman/fikafinds-ui.git
+git clone https://github.com/IanSpeelman/fikafinds-products.git
+```
+
+### 3. Environment Setup
+
+Create a `.env` file in the root directory and copy it to the UI folder:
+
+```env
+DBUSER=your_database_user
+DBPASS=your_database_password
+DBDB=your_database_name
+DBHOST=your_database_host
+VITE_PRODUCT_HOST=your_products_host
+```
+
+**Linux/Mac:**
+
+```bash
+cp .env fikafinds-ui/.env
+```
+
+**Windows:**
+
+```cmd
+copy .env fikafinds-ui\.env
+```
+
+### 4. Docker Compose Configuration
+
+Create a `docker-compose.yml` file in the root directory:
+
+```yaml
+services:
+  frontend:
+    build: ./FikaFinds-ui
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./FikaFinds-ui/src:/app/src
+    develop:
+      watch:
+        - path: ./FikaFinds-ui
+          target: /
+          ignore:
+            - node_modules/
+            - src/
+          action: rebuild
+
+  service-products:
+    build: ./FikaFinds-products
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./FikaFinds-products/src:/app/src/
+    env_file:
+      - .env
+    depends_on:
+      service-database:
+        condition: service_healthy
+    develop:
+      watch:
+        - path: ./FikaFinds-products
+          target: /
+          ignore:
+            - node_modules/
+            - src/
+          action: rebuild
+
+  service-database:
+    image: postgres:13.16
+    ports:
+      - "5432:5432"
+    volumes:
+      - "/home/meister/Documents/projects/FikaFinds/db:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: ${DBPASS}
+      POSTGRES_USER: ${DBUSER}
+      POSTGRES_DB: ${DBDB}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DBUSER} -d ${DBDB}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+
+```
+
+### 5. Start the Application
+
+```bash
+docker compose up
+```
+
+To run in detached mode:
+
+```bash
+docker compose up -d
+```
+
+To run in watch mode:
+
+```bash
+docker compose up --watch
+```
+
+## Development
+
+### Local Development (Without Docker)
+
+1. Install dependencies:
+
+```bash
+cd fikafinds-ui
+npm i
+```
+
+2. Start development server:
+
+```bash
+npm run dev
+```
+
+### Docker Development
+
+Build the image:
+
+```bash
+docker build -t fikafinds-ui .
+```
+
+Run the container:
+
+```bash
+docker run -p 3000:3000 fikafinds-ui
 ```
