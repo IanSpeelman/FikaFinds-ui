@@ -1,0 +1,44 @@
+.container{
+    position: fixed;
+    display: flex;
+justify-content: center;
+align-items: center;
+    height: 48px;
+    text-align: center;
+    width: 100%;
+    z-index: 50;
+    top: -48px;
+    transition: .5s ease-in-out top;
+}
+.success{
+    background-color: rgba(106, 173, 97);
+}
+.danger{
+    background-color: rgba(173, 97, 97);
+
+}
+.info{
+    background-color: rgba(97, 131, 173);
+}
+.cross{
+    display: flex;
+    width: 24px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black-100);
+    font-size: 16px;
+    line-height: 16;
+    border-radius: 12px;
+    position: absolute;
+    right: 24px;
+    bottom: 50%;
+    transform: translate(0, 50%)
+}
+.cross > p{
+    color: var(--white);
+}
+
+.show{
+    top: 0px;
+}
