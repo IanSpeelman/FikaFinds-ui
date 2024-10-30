@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { notificationItem } from '../../utils/types'
 import styles from './index.module.css'
 
@@ -9,11 +9,14 @@ type NotificationProps = {
 export default function Notification({ notification }: NotificationProps) {
 
     const { message, type } = notification.notification
+    const [text, setText] = useState("")
+
 
 
     useEffect(() => {
 
         if (message !== "") {
+            setText(message)
             setTimeout(() => {
 
                 notification.setNotification({ type, message: "" })
@@ -21,12 +24,12 @@ export default function Notification({ notification }: NotificationProps) {
             }, 3000)
         }
 
-    }, [notification.notification.message])
+    }, [message, type, notification])
 
 
     return (
         <div className={`${styles.container} ${styles[`${type}`]} ${message !== "" && styles.show}`}>
-            <p className="message">{message}</p>
+            <p className="message">{text}</p>
             <div className={styles.cross}><p>x</p></div>
         </div>
     )

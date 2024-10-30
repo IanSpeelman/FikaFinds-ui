@@ -4,8 +4,14 @@ import styles from './index.module.css'
 const host = import.meta.env.VITE_AUTHENTICATION_HOST
 console.log(import.meta.env)
 import { useNavigate } from 'react-router-dom'
+import { notificationItem } from "../../utils/types";
 
-export default function Login() {
+
+type LoginProps = {
+    notification: notificationItem
+}
+
+export default function Login({ notification }: LoginProps) {
 
     const [register, setRegister] = useState({
         firstName: "",
@@ -39,8 +45,6 @@ export default function Login() {
         navigate("/")
     }
 
-
-
     async function HandleLogIn(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
         const response = await fetch(`${host}/authentication/login`, {
@@ -55,6 +59,7 @@ export default function Login() {
         })
         if (response.ok) {
             setJwt(response.headers)
+            notification.setNotification({ message: "You have been logged in!", type: "success" })
         }
     }
 
@@ -72,12 +77,9 @@ export default function Login() {
         })
         if (response.ok) {
             setJwt(response.headers)
+            notification.setNotification({ message: "You have successfully registered!", type: "success" })
         }
     }
-
-
-
-
 
     return (
         <div className={styles.wrapper}>
