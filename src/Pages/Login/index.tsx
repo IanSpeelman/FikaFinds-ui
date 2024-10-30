@@ -3,6 +3,7 @@ import Hero from "../../Components/Hero";
 import styles from './index.module.css'
 const host = import.meta.env.VITE_AUTHENTICATION_HOST
 console.log(import.meta.env)
+import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
 
@@ -14,11 +15,31 @@ export default function Login() {
         password: "",
         confirmPassword: ""
     })
-
     const [login, setLogin] = useState({
         email: "",
         password: ""
     })
+    const navigate = useNavigate()
+
+    function setJwt(headers: Headers) {
+        const token = headers.get("Authorization") || ""
+        localStorage.setItem("Authorization-token", token)
+        setLogin({
+            email: "",
+            password: ""
+        })
+        setRegister({
+            firstName: "",
+            lastName: "",
+            email: "",
+            confirmEmail: "",
+            password: "",
+            confirmPassword: ""
+        })
+        navigate("/")
+    }
+
+
 
     async function HandleLogIn(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
@@ -28,12 +49,13 @@ export default function Login() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                ...register
+                ...login
             })
 
         })
-        const token = response.headers.get("Authorization") || ""
-        localStorage.setItem("Authorization-token", token)
+        if (response.ok) {
+            setJwt(response.headers)
+        }
     }
 
     async function HandleRegister(e: React.FormEvent<HTMLFormElement>) {
@@ -48,8 +70,9 @@ export default function Login() {
             })
 
         })
-        const token = response.headers.get("Authorization") || ""
-        localStorage.setItem("Authorization-token", token)
+        if (response.ok) {
+            setJwt(response.headers)
+        }
     }
 
     return (
