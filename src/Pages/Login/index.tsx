@@ -15,12 +15,25 @@ export default function Login() {
         confirmPassword: ""
     })
 
+    const [login, setLogin] = useState({
+        email: "",
+        password: ""
+    })
 
-
-
-    function HandleLogIn(e: React.FormEvent<HTMLFormElement>) {
+    async function HandleLogIn(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        console.log('login')
+        const response = await fetch(`${host}/authentication/login`, {
+            method: 'post',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                ...register
+            })
+
+        })
+        const token = response.headers.get("Authorization") || ""
+        localStorage.setItem("Authorization-token", token)
     }
 
     async function HandleRegister(e: React.FormEvent<HTMLFormElement>) {
@@ -35,9 +48,10 @@ export default function Login() {
             })
 
         })
-        const data = response.headers
-        console.log(data)
+        const token = response.headers.get("Authorization") || ""
+        localStorage.setItem("Authorization-token", token)
     }
+
     return (
         <div className={styles.wrapper}>
             <Hero size="small" header="Log In!" />
@@ -45,8 +59,8 @@ export default function Login() {
                 <div className={styles.section}>
                     <h3>Log In</h3>
                     <form className={styles.form} id="login" onSubmit={(e) => HandleLogIn(e)}>
-                        <input type="text" className={styles.input} id="email" placeholder="E-Mail" />
-                        <input type="password" className={styles.input} id="password" placeholder="Password" />
+                        <input onChange={(e) => setLogin({ ...login, email: e.target.value })} value={login.email} type="text" className={styles.input} id="email" placeholder="E-Mail" />
+                        <input onChange={(e) => setLogin({ ...login, password: e.target.value })} value={login.password} type="password" className={styles.input} id="password" placeholder="Password" />
                         <button className={styles.button}>Log in!</button>
                     </form>
                 </div>
@@ -65,7 +79,6 @@ export default function Login() {
                     </form>
                 </div>
             </div>
-
         </div>
     )
 }
