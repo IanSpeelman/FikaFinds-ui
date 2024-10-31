@@ -1,4 +1,4 @@
-export function isValidPassword(inputPassword: string): boolean {
+export function isValidPassword(inputPassword: string | undefined | null): boolean {
     const password = inputPassword || ""
 
     const length = password.length > 7
@@ -13,10 +13,10 @@ export function isValidPassword(inputPassword: string): boolean {
 }
 
 
-export function isValidEmail(email: string | null): boolean {
+export function isValidEmail(email: string | undefined): boolean {
     return email?.match(/^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/) !== null
 }
 
-export function equalStrings(string1: string | null, string2: string | null) {
+export function equalStrings(string1: string | undefined | null, string2: string | undefined | null) {
     return string1 === string2
 }

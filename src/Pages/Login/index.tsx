@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Hero from "../../Components/Hero";
 import styles from './index.module.css'
 const host = import.meta.env.VITE_AUTHENTICATION_HOST
 import { useNavigate } from 'react-router-dom'
-import { notificationItem } from "../../utils/types";
-import { equalStrings, isValidEmail, isValidPassword } from "../../utils/CheckCredentials";
+import { ItemsRefs, notificationItem } from "../../utils/types";
+import { isValidEmail, isValidPassword, equalStrings } from "../../utils/CheckCredentials";
 
 
 type LoginProps = {
@@ -12,6 +12,22 @@ type LoginProps = {
 }
 
 export default function Login({ notification }: LoginProps) {
+
+    const items = useRef<ItemsRefs>(
+        {
+            login: {
+                email: null,
+                password: null
+            },
+            register: {
+                firstName: null,
+                lastName: null,
+                email: null,
+                confirmEmail: null,
+                password: null,
+                confirmPassword: null
+            }
+        })
 
     const [register, setRegister] = useState({
         firstName: "",
@@ -43,6 +59,8 @@ export default function Login({ notification }: LoginProps) {
             confirmPassword: ""
         })
         navigate("/")
+
+
     }
 
     async function HandleLogIn(e: React.FormEvent<HTMLFormElement>) {
@@ -88,6 +106,28 @@ export default function Login({ notification }: LoginProps) {
         }
     }
 
+    function toggleInputStyles(element: HTMLInputElement | null, state: boolean) {
+        if (element?.value.length || 0 > 0 && element !== null) {
+            state ? element.classList.remove(styles.error) : element.classList.add(styles.error)
+            state ? element.classList.add(styles.success) : element.classList.remove(styles.success)
+        }
+        else {
+            if (element !== null) {
+                element.classList.remove(styles.error)
+                element.classList.remove(styles.success)
+            }
+        }
+    }
+
+    useEffect(() => {
+        toggleInputStyles(items.current.register.email, isValidEmail(items.current.register.email?.value))
+        toggleInputStyles(items.current.register.confirmEmail, equalStrings(items.current.register.email?.value, items.current.register.confirmEmail?.value))
+        toggleInputStyles(items.current.register.password, isValidPassword(items.current.register.password?.value))
+        toggleInputStyles(items.current.register.confirmPassword, equalStrings(items.current.register.password?.value, items.current.register.confirmPassword?.value))
+        toggleInputStyles(items.current.register.firstName, true)
+        toggleInputStyles(items.current.register.lastName, true)
+    })
+
     return (
         <div className={styles.wrapper}>
             <Hero size="small" header="Log In!" />
@@ -95,8 +135,8 @@ export default function Login({ notification }: LoginProps) {
                 <div className={styles.section}>
                     <h3>Log In</h3>
                     <form className={styles.form} id="login" onSubmit={(e) => HandleLogIn(e)}>
-                        <input onChange={(e) => setLogin({ ...login, email: e.target.value })} value={login.email} type="text" className={styles.input} id="email" placeholder="E-Mail" />
-                        <input onChange={(e) => setLogin({ ...login, password: e.target.value })} value={login.password} type="password" className={styles.input} id="password" placeholder="Password" />
+                        <input ref={(e) => (items.current.login.email = e)} onChange={(e) => setLogin({ ...login, email: e.target.value })} value={login.email} type="text" className={styles.input} id="email" placeholder="E-Mail" />
+                        <input ref={(e) => (items.current.login.password = e)} onChange={(e) => setLogin({ ...login, password: e.target.value })} value={login.password} type="password" className={styles.input} id="password" placeholder="Password" />
                         <button className={styles.button}>Log in!</button>
                     </form>
                 </div>
@@ -104,13 +144,13 @@ export default function Login({ notification }: LoginProps) {
                     <h3>Register</h3>
                     <form className={styles.form} id="register" onSubmit={(e) => HandleRegister(e)}>
                         <div className={styles.oneline}>
-                            <input onChange={(e) => setRegister({ ...register, firstName: e.target.value })} value={register.firstName} type="text" className={styles.input} id="firstname" placeholder="First Name" />
-                            <input onChange={(e) => setRegister({ ...register, lastName: e.target.value })} value={register.lastName} type="text" className={styles.input} id="lastname" placeholder="Last Name" />
+                            <input ref={(e) => (items.current.register.firstName = e)} onChange={(e) => setRegister({ ...register, firstName: e.target.value })} value={register.firstName} type="text" className={styles.input} id="firstname" placeholder="First Name" />
+                            <input ref={(e) => (items.current.register.lastName = e)} onChange={(e) => setRegister({ ...register, lastName: e.target.value })} value={register.lastName} type="text" className={styles.input} id="lastname" placeholder="Last Name" />
                         </div>
-                        <input onChange={(e) => setRegister({ ...register, email: e.target.value })} value={register.email} type="text" className={styles.input} id="email" placeholder="E-Mail" />
-                        <input onChange={(e) => setRegister({ ...register, confirmEmail: e.target.value })} value={register.confirmEmail} type="text" className={styles.input} id="emailconfirm" placeholder="Confirm E-Mail" />
-                        <input onChange={(e) => setRegister({ ...register, password: e.target.value })} value={register.password} type="password" className={styles.input} id="password" placeholder="Password" />
-                        <input onChange={(e) => setRegister({ ...register, confirmPassword: e.target.value })} value={register.confirmPassword} type="password" className={styles.input} id="passwordconfirm" placeholder="Confirm Password" />
+                        <input ref={(e) => (items.current.register.email = e)} onChange={(e) => setRegister({ ...register, email: e.target.value })} value={register.email} type="text" className={styles.input} id="email" placeholder="E-Mail" />
+                        <input ref={(e) => (items.current.register.confirmEmail = e)} onChange={(e) => setRegister({ ...register, confirmEmail: e.target.value })} value={register.confirmEmail} type="text" className={styles.input} id="emailconfirm" placeholder="Confirm E-Mail" />
+                        <input ref={(e) => (items.current.register.password = e)} onChange={(e) => setRegister({ ...register, password: e.target.value })} value={register.password} type="password" className={styles.input} id="password" placeholder="Password" />
+                        <input ref={(e) => (items.current.register.confirmPassword = e)} onChange={(e) => setRegister({ ...register, confirmPassword: e.target.value })} value={register.confirmPassword} type="password" className={styles.input} id="passwordconfirm" placeholder="Confirm Password" />
                         <button className={styles.button}>Register</button>
                     </form>
                 </div>

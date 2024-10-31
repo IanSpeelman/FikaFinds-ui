@@ -74,6 +74,29 @@
 .oneline{
     display: flex;
     flex-direction: row;
-gap: 8px;
+    gap: 8px;
+}
+.error{
+    outline: none;
+    border: 1px solid rgba(255,0,0,0.4);
+    background-color:rgba(225,0,0,0.03);
 }
 
+.error:focus{
+    outline: none;
+    border: 1px solid rgba(255,0,0,0.8);
+    background-color:rgba(225,0,0,0.1);
+}
+
+
+.success{
+    outline: none;
+    border: 1px solid rgba(0,255,0,0.4);
+    background-color:rgba(0,255,0,0.03);
+}
+
+.success:focus{
+    outline: none;
+    border: 1px solid rgba(0,255,0,0.8);
+    background-color:rgba(0,255,0,0.1);
+}
