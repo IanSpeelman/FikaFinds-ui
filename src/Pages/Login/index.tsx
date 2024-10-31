@@ -2,9 +2,9 @@ import { useState } from "react";
 import Hero from "../../Components/Hero";
 import styles from './index.module.css'
 const host = import.meta.env.VITE_AUTHENTICATION_HOST
-console.log(import.meta.env)
 import { useNavigate } from 'react-router-dom'
 import { notificationItem } from "../../utils/types";
+import { equalStrings, isValidEmail, isValidPassword } from "../../utils/CheckCredentials";
 
 
 type LoginProps = {
@@ -47,37 +47,44 @@ export default function Login({ notification }: LoginProps) {
 
     async function HandleLogIn(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        const response = await fetch(`${host}/authentication/login`, {
-            method: 'post',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                ...login
-            })
 
-        })
-        if (response.ok) {
-            setJwt(response.headers)
-            notification.setNotification({ message: "You have been logged in!", type: "success" })
+        if (isValidEmail(login.email) && isValidPassword(login.password)) {
+            const response = await fetch(`${host}/authentication/login`, {
+                method: 'post',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ...login
+                })
+
+            })
+            if (response.ok) {
+                setJwt(response.headers)
+                notification.setNotification({ message: "You have been logged in!", type: "success" })
+            }
         }
     }
 
     async function HandleRegister(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
-        const response = await fetch(`${host}/authentication/register`, {
-            method: 'post',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                ...register
-            })
 
-        })
-        if (response.ok) {
-            setJwt(response.headers)
-            notification.setNotification({ message: "You have successfully registered!", type: "success" })
+        if (isValidEmail(register.email) && isValidPassword(register.password)) {
+
+            const response = await fetch(`${host}/authentication/register`, {
+                method: 'post',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    ...register
+                })
+
+            })
+            if (response.ok) {
+                setJwt(response.headers)
+                notification.setNotification({ message: "You have successfully registered!", type: "success" })
+            }
         }
     }
 
