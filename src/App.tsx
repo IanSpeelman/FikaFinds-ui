@@ -8,6 +8,7 @@ import Shop from './Pages/Shop/index.tsx'
 import Login from './Pages/Login/index.tsx'
 import { useState } from 'react'
 import { notificationItem, notificationType } from './utils/types.ts'
+import Show from './Pages/Show/index.tsx'
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
                     <Route path="/shop" element={<Shop />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<Login notification={notificationItem} />} />
+                    <Route path="/show/:id" element={<Show />} />
                 </Route>
             </Routes >
         </BrowserRouter >
