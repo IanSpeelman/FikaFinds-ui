@@ -26,11 +26,15 @@ export default function Notification({ notification }: NotificationProps) {
 
     }, [message, type, notification])
 
+    function close() {
+        notification.setNotification({ type, message: "" })
+    }
+
 
     return (
         <div className={`${styles.container} ${styles[`${type}`]} ${message !== "" && styles.show}`}>
             <p className="message">{text}</p>
-            <div className={styles.cross}><p>x</p></div>
+            <div className={styles.cross} onClick={close}><p>x</p></div>
         </div>
     )
 }
