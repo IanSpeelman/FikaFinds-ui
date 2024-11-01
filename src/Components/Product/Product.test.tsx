@@ -1,11 +1,16 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom"
 import Product from "."
+import { BrowserRouter } from "react-router-dom";
 
 
 describe("Product component", () => {
     it("should render with all the properties", () => {
-        const { container } = render(<Product product={{ id: 1, name: "product", price: 5, category: "category", image: "image" }} />)
+        const { container } = render(
+            <BrowserRouter>
+                <Product product={{ id: 1, name: "product", price: 5, category: "category", image: "image" }} />
+            </BrowserRouter>
+        )
 
 
         const product = screen.getByText("product")
