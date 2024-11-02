@@ -12,6 +12,7 @@ export default function Show() {
     const { id } = useParams()
 
     const [product, setProduct] = useState<product | null>(null)
+    const [amount, setAmount] = useState(1)
 
 
     useEffect(() => {
@@ -38,6 +39,15 @@ export default function Show() {
 
     }, [id])
 
+
+    function handleChange(change: number) {
+        if (amount + change > 0) {
+            setAmount(amount + change)
+        }
+    }
+
+
+
     if (product !== null) {
         return (
             <div className={styles.container}>
@@ -56,9 +66,9 @@ export default function Show() {
                     <p className={styles.description}>{product.description}</p>
                     <div className={styles.addcart}>
                         <div className={styles.inputgroup}>
-                            <p className={styles.inputControl}>+</p>
-                            <p className={styles.inputControl}>1</p>
-                            <p className={styles.inputControl}>-</p>
+                            <p className={styles.inputControl} onClick={() => handleChange(-1)}>-</p>
+                            <p className={styles.inputControl}>{amount}</p>
+                            <p className={styles.inputControl} onClick={() => handleChange(1)}>+</p>
                         </div>
                         <p className={styles.button}>ADD TO CART</p>
                     </div>
