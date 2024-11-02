@@ -6,11 +6,15 @@ export type product = {
     image: string,
     price: number,
     category: string,
+    specifications: string,
+    description: string,
     stock?: number,
     amount?: number,
     createdAt?: Date
     updatedAt?: Date
 }
+
+export type parsedSpecifications = string[][]
 
 export type notificationType = {
     message: string,
