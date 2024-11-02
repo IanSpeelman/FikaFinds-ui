@@ -22,8 +22,6 @@ export default function Show() {
                     const data = await response.json()
                     if (data[0].image === "test") {
                         setProduct({ ...data[0], image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQhik6ntKzUrb7GbmRt0laNt4TDv7p8sdfywfGt9JLMf_ZDrvuJWV6o_v4yFe42PP-luPrrAe-jl7Kg9IYPsLVEbHDvViAcW7CnyQeUWkF52g_NoB7o0dU68g" })
-
-
                     }
                     else {
                         setProduct(data[0])

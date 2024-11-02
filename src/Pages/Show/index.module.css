@@ -55,6 +55,12 @@
     align-items: center;
     justify-content: center;
 }
+.inputControl:first-of-type{
+    border-right: 0;
+}
+.inputControl:last-of-type{
+    border-left: 0;
+}
 .button{
     background-color: var(--primary-light);
     color: var(--white);
