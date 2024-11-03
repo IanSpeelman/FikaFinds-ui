@@ -2,18 +2,19 @@ import { useParams, useNavigate } from "react-router-dom"
 import styles from './index.module.css'
 import { useEffect } from "react"
 const host = import.meta.env.VITE_PRODUCT_HOST
-import { product, shoppingCartType } from "../../utils/types"
+import { notificationItem, product, shoppingCartType } from "../../utils/types"
 import { useState } from "react"
 import parseSpecifications from "../../utils/parseSpecifications"
 
 
 type ShowProps = {
+    notificationItem: notificationItem
     shoppingCart: shoppingCartType
 }
 
 
 
-export default function Show({ shoppingCart }: ShowProps) {
+export default function Show({ notificationItem, shoppingCart }: ShowProps) {
     const navigate = useNavigate()
     const { id } = useParams()
 

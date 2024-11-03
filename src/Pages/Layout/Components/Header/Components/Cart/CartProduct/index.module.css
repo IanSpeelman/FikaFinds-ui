@@ -31,3 +31,22 @@
     color: var(--black-90);
 
 }
+
+.input{
+    display: flex;
+    flex-direction: column;
+    margin: 0 16px;
+}
+.inputControl{
+    border: 1px solid var(--black-20);
+    height: 100%;
+    padding: 0 8px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+.inputControl:first-of-type{
+    border-bottom: 0;
+}

@@ -19,6 +19,8 @@ export default function Cart({ isOpen, setIsOpen, shoppingCart }: CartProps) {
         }
     }
 
+    const total = shoppingCart.items.reduce((total, item) => total + (item.amount * item.product.price), 0)
+
     return (
         <div className={`${styles.container} ${isOpen ? styles.show : styles.hide}`} onClick={(e) => handleClose(e)}>
             <div className={`${styles.cart} ${isOpen ? styles.showposition : styles.hideposition}`}>
@@ -27,12 +29,12 @@ export default function Cart({ isOpen, setIsOpen, shoppingCart }: CartProps) {
                     <p className={styles.close} onClick={(e) => handleClose(e)}>X</p>
                 </div>
                 <div className={styles.products}>
-                    {shoppingCart.items.map(item => <CartProduct key={item.product.id} item={item} />)}
+                    {shoppingCart.items.map(item => <CartProduct key={item.product.id} item={item} shoppingCart={shoppingCart} />)}
                 </div>
                 <div className={styles.bottom}>
                     <div className={styles.total}>
                         <p>Total:</p>
-                        <p>360SEK</p>
+                        <p>{total}SEK</p>
                     </div>
                     <button className={styles.button}>Checkout!</button>
                 </div>

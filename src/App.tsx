@@ -26,13 +26,13 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Home />} />
                 <Route element={<Layout shoppingCart={shoppingCart} notification={notificationItem} />} >
+                    <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/shop" element={<Shop />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<Login notification={notificationItem} />} />
-                    <Route path="/show/:id" element={<Show shoppingCart={shoppingCart} />} />
+                    <Route path="/show/:id" element={<Show notificationItem={notificationItem} shoppingCart={shoppingCart} />} />
                 </Route>
             </Routes >
         </BrowserRouter >
