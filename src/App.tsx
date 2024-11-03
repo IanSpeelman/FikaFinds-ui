@@ -13,17 +13,7 @@ import Show from './Pages/Show/index.tsx'
 function App() {
 
     const [notification, setNotification] = useState<notificationType>({ message: '', type: 'success' })
-    const [cartItems, setCartItems] = useState<cartItemType[] | []>([{
-        amount: 2, product: {
-            id: 53,
-            name: "Ian",
-            image: "https://ianspeelman.com/assets/profile_picture-mHRzL_Nn.jpg",
-            price: 999,
-            category: "Awesome",
-            description: "ian is an awesome individual",
-            specifications: "age:27, aweosmeness:off the charts"
-        }
-    }])
+    const [cartItems, setCartItems] = useState<cartItemType[] | []>([])
     const notificationItem: notificationItem = {
         notification,
         setNotification
@@ -42,7 +32,7 @@ function App() {
                     <Route path="/shop" element={<Shop />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<Login notification={notificationItem} />} />
-                    <Route path="/show/:id" element={<Show />} />
+                    <Route path="/show/:id" element={<Show shoppingCart={shoppingCart} />} />
                 </Route>
             </Routes >
         </BrowserRouter >

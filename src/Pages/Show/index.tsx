@@ -2,12 +2,18 @@ import { useParams, useNavigate } from "react-router-dom"
 import styles from './index.module.css'
 import { useEffect } from "react"
 const host = import.meta.env.VITE_PRODUCT_HOST
-import { product } from "../../utils/types"
+import { product, shoppingCartType } from "../../utils/types"
 import { useState } from "react"
 import parseSpecifications from "../../utils/parseSpecifications"
 
 
-export default function Show() {
+type ShowProps = {
+    shoppingCart: shoppingCartType
+}
+
+
+
+export default function Show({ shoppingCart }: ShowProps) {
     const navigate = useNavigate()
     const { id } = useParams()
 
@@ -47,6 +53,24 @@ export default function Show() {
     }
 
 
+    function addToCart() {
+        if (product) {
+            let flag = false
+            let items = shoppingCart.items
+            items = items.map(item => {
+                if (product.id === item.product.id) {
+                    item.amount += amount
+                    flag = true
+                }
+                return item
+            })
+            if (!flag) {
+                items = [...items, { amount, product }]
+            }
+            shoppingCart.setShoppingCart(items)
+        }
+    }
+
 
     if (product !== null) {
         return (
@@ -70,7 +94,7 @@ export default function Show() {
                             <p className={styles.inputControl}>{amount}</p>
                             <p className={styles.inputControl} onClick={() => handleChange(1)}>+</p>
                         </div>
-                        <p className={styles.button}>ADD TO CART</p>
+                        <p className={styles.button} onClick={addToCart}>ADD TO CART</p>
                     </div>
                 </div>
                 <div className={styles.specifications}>
