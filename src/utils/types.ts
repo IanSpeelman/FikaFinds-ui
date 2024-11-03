@@ -21,11 +21,21 @@ export type notificationType = {
     type: 'success' | 'info' | 'danger' | ""
 }
 
+
 export type notificationItem = {
     notification: notificationType,
     setNotification: React.Dispatch<SetStateAction<notificationType>>
 }
 
+export type cartItemType = {
+    amount: number,
+    product: product
+}
+
+export type shoppingCartType = {
+    items: cartItemType[] | [],
+    setShoppingCart: React.Dispatch<SetStateAction<cartItemType[]>>
+}
 
 
 export interface LoginRefs {
@@ -46,3 +56,4 @@ export interface ItemsRefs {
     login: LoginRefs; // Reference to login fields
     register: RegisterRefs; // Reference to register fields
 }
+

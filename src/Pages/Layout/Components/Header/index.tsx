@@ -1,12 +1,27 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Cart from './Components/Cart'
 import styles from './index.module.css'
+import { shoppingCartType } from '../../../../utils/types'
 
+type HeaderProps = {
+    shoppingCart: shoppingCartType
+}
 
-export default function Header() {
+export default function Header({ shoppingCart }: HeaderProps) {
 
     const [isOpen, setIsOpen] = useState(false)
+
+    const [cartCount, setCartCount] = useState(0)
+
+
+
+    useEffect(() => {
+
+        setCartCount(shoppingCart.items.length)
+
+    }, [shoppingCart])
+
 
     function handleOpen() {
         setIsOpen(true)
@@ -28,7 +43,7 @@ export default function Header() {
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-basket3" viewBox="0 0 16 16">
                                     <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM3.394 15l-1.48-6h-.97l1.525 6.426a.75.75 0 0 0 .729.574h9.606a.75.75 0 0 0 .73-.574L15.056 9h-.972l-1.479 6z" />
                                 </svg>
-                                <div className={styles.cartOverlay}>4</div>
+                                <div className={styles.cartOverlay}>{cartCount}</div>
                             </div>
                             <Link to="/login" className={styles.icon}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-personscale" viewBox="0 0 22 22">
@@ -40,7 +55,7 @@ export default function Header() {
                 </nav>
             </div>
             <div className={styles.line}></div>
-            <Cart isOpen={isOpen} setIsOpen={setIsOpen} />
+            <Cart isOpen={isOpen} setIsOpen={setIsOpen} shoppingCart={shoppingCart} />
         </header>
     )
 }
