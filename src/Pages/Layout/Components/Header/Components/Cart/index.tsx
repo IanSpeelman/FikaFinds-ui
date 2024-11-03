@@ -11,30 +11,31 @@ type CartProps = {
 
 export default function Cart({ isOpen, setIsOpen }: CartProps) {
 
-    function handleClose() {
-        setIsOpen(false)
+    function handleClose(e: React.MouseEvent<HTMLDivElement>) {
+        if (e.target == e.currentTarget) {
+            setIsOpen(false)
+        }
     }
 
-    if (isOpen)
-        return (
-            <div className={styles.container}>
-                <div className={styles.cart}>
-                    <div className={styles.top}>
-                        <p className={styles.title}>Shopping Cart</p>
-                        <p className={styles.close} onClick={handleClose}>X</p>
+    return (
+        <div className={`${styles.container} ${isOpen ? styles.show : styles.hide}`} onClick={(e) => handleClose(e)}>
+            <div className={`${styles.cart} ${isOpen ? styles.showposition : styles.hideposition}`}>
+                <div className={styles.top}>
+                    <p className={styles.title}>Shopping Cart</p>
+                    <p className={styles.close} onClick={(e) => handleClose(e)}>X</p>
+                </div>
+                <CartProduct />
+                <CartProduct />
+                <CartProduct />
+                <CartProduct />
+                <div className={styles.bottom}>
+                    <div className={styles.total}>
+                        <p>Total:</p>
+                        <p>360SEK</p>
                     </div>
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <CartProduct />
-                    <div className={styles.bottom}>
-                        <div className={styles.total}>
-                            <p>Total:</p>
-                            <p>360SEK</p>
-                        </div>
-                        <button className={styles.button}>Checkout!</button>
-                    </div>
+                    <button className={styles.button}>Checkout!</button>
                 </div>
             </div>
-        )
+        </div>
+    )
 }
