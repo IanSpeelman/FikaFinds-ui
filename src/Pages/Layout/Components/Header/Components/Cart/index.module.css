@@ -102,3 +102,15 @@
     overflow: scroll;
     height: 100%;
 }
+.center{
+    width: fit-content;
+    padding: 16px;
+    margin: 16px auto;
+}
+.price{
+    font-weight: bold;
+}
+.currency{
+    font-size: .65em ;
+    font-weight: normal;
+}

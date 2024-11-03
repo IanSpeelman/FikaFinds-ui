@@ -78,7 +78,8 @@ export default function Show({ notificationItem, shoppingCart }: ShowProps) {
             <div className={styles.container}>
                 <div className={styles.imagecontainer}>
                     <img src={product.image} alt={product.name} className={styles.image} />
-                    <div className={styles.imageselector}> <img src={product.image} alt="test" className={styles.handle} />
+                    <div className={styles.imageselector}>
+                        <img src={product.image} alt={product.name} className={styles.handle} />
                         <img src={product.image} alt={product.name} className={styles.handle} />
                         <img src={product.image} alt={product.name} className={styles.handle} />
                         <img src={product.image} alt={product.name} className={styles.handle} />

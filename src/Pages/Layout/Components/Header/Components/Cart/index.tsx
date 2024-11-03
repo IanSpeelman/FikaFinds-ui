@@ -29,12 +29,13 @@ export default function Cart({ isOpen, setIsOpen, shoppingCart }: CartProps) {
                     <p className={styles.close} onClick={(e) => handleClose(e)}>X</p>
                 </div>
                 <div className={styles.products}>
+                    {shoppingCart.items.length < 1 && <p className={styles.center}>Cart is empty</p>}
                     {shoppingCart.items.map(item => <CartProduct key={item.product.id} item={item} shoppingCart={shoppingCart} />)}
                 </div>
                 <div className={styles.bottom}>
                     <div className={styles.total}>
                         <p>Total:</p>
-                        <p>{total}SEK</p>
+                        <p className={styles.price}>{total}<span className={styles.currency}>SEK</span></p>
                     </div>
                     <button className={styles.button}>Checkout!</button>
                 </div>
