@@ -70,6 +70,8 @@ export default function Show({ notificationItem, shoppingCart }: ShowProps) {
                 items = [...items, { amount, product }]
             }
             shoppingCart.setShoppingCart(items)
+            localStorage.setItem('cart', JSON.stringify(items))
+            notificationItem.setNotification({ message: 'Item added to cart', type: 'success' })
         }
     }
 

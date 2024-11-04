@@ -1,15 +1,16 @@
 import styles from './index.module.css'
-import { cartItemType, shoppingCartType } from '../../../../../../../utils/types'
+import { cartItemType, notificationItem, shoppingCartType } from '../../../../../../../utils/types'
 
 
 type CartProductProps = {
     item: cartItemType,
     shoppingCart: shoppingCartType
+    notificationItem: notificationItem
 }
 
 
 
-export default function CartProduct({ shoppingCart, item }: CartProductProps) {
+export default function CartProduct({ shoppingCart, item, notificationItem }: CartProductProps) {
 
 
     function removeSelf(e: React.MouseEvent<HTMLDivElement>) {
@@ -17,6 +18,8 @@ export default function CartProduct({ shoppingCart, item }: CartProductProps) {
         const id = parseInt(target.dataset.id || "0")
         const items = shoppingCart.items.filter(item => item.product.id !== id)
         shoppingCart.setShoppingCart(items)
+        localStorage.setItem('cart', JSON.stringify(items))
+        notificationItem.setNotification({ message: 'Item removed from cart', type: 'info' })
     }
 
 
