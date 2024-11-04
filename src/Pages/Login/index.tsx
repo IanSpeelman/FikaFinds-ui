@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import Hero from "../../Components/Hero";
 import styles from './index.module.css'
 const host = import.meta.env.VITE_AUTHENTICATION_HOST
@@ -9,9 +9,10 @@ import { isValidEmail, isValidPassword, equalStrings } from "../../utils/CheckCr
 
 type LoginProps = {
     notification: notificationItem
+    setToken: React.Dispatch<SetStateAction<string>>
 }
 
-export default function Login({ notification }: LoginProps) {
+export default function Login({ notification, setToken }: LoginProps) {
 
     const items = useRef<ItemsRefs>(
         {
@@ -46,6 +47,7 @@ export default function Login({ notification }: LoginProps) {
     function setJwt(headers: Headers) {
         const token = headers.get("Authorization") || ""
         localStorage.setItem("Authorization-token", token)
+        setToken(token)
         setLogin({
             email: "",
             password: ""
@@ -58,6 +60,7 @@ export default function Login({ notification }: LoginProps) {
             password: "",
             confirmPassword: ""
         })
+
         navigate("/")
 
 

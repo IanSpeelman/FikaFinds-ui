@@ -47,6 +47,19 @@
     align-items: center;
     font-size: 0.9em;
 }
+.userOverlay {
+    position: absolute;
+    top: -16px;
+    left: 16px;
+    font-size: 10px;
+    width: max-content;
+}
+.userOverlay *{
+    display: inline;
+}
+.logout{
+    text-decoration: underline;
+}
 
 .line{
     width:100%;

@@ -1,4 +1,5 @@
 import { SetStateAction } from "react"
+import { JwtPayload } from "jwt-decode"
 
 export type product = {
     id: number,
@@ -21,7 +22,6 @@ export type notificationType = {
     type: 'success' | 'info' | 'danger' | ""
 }
 
-
 export type notificationItem = {
     notification: notificationType,
     setNotification: React.Dispatch<SetStateAction<notificationType>>
@@ -37,6 +37,10 @@ export type shoppingCartType = {
     setShoppingCart: React.Dispatch<SetStateAction<cartItemType[]>>
 }
 
+export interface user extends JwtPayload {
+    email: string,
+    firstName: string
+}
 
 export interface LoginRefs {
     email: HTMLInputElement | null; // Type for email input
@@ -56,4 +60,3 @@ export interface ItemsRefs {
     login: LoginRefs; // Reference to login fields
     register: RegisterRefs; // Reference to register fields
 }
-

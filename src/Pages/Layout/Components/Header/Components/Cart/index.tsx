@@ -1,17 +1,18 @@
 import { SetStateAction } from 'react'
 import CartProduct from './CartProduct'
 import styles from './index.module.css'
-import { shoppingCartType } from '../../../../../../utils/types'
+import { notificationItem, shoppingCartType } from '../../../../../../utils/types'
 
 
 type CartProps = {
     isOpen: boolean
     setIsOpen: React.Dispatch<SetStateAction<boolean>>
     shoppingCart: shoppingCartType
+    notificationItem: notificationItem
 }
 
 
-export default function Cart({ isOpen, setIsOpen, shoppingCart }: CartProps) {
+export default function Cart({ isOpen, setIsOpen, shoppingCart, notificationItem }: CartProps) {
 
     function handleClose(e: React.MouseEvent<HTMLDivElement>) {
         if (e.target == e.currentTarget) {
@@ -30,7 +31,7 @@ export default function Cart({ isOpen, setIsOpen, shoppingCart }: CartProps) {
                 </div>
                 <div className={styles.products}>
                     {shoppingCart.items.length < 1 && <p className={styles.center}>Cart is empty</p>}
-                    {shoppingCart.items.map(item => <CartProduct key={item.product.id} item={item} shoppingCart={shoppingCart} />)}
+                    {shoppingCart.items.map(item => <CartProduct key={item.product.id} item={item} notificationItem={notificationItem} shoppingCart={shoppingCart} />)}
                 </div>
                 <div className={styles.bottom}>
                     <div className={styles.total}>
