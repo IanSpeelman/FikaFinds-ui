@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import styles from './index.module.css'
 
 type HeroProps = {
@@ -14,7 +15,7 @@ export default function Hero({ size, header, subheader, buttonText, action }: He
             <div className={styles.content}>
                 <h2 className={styles.header}>{header}</h2>
                 {subheader && <h3 className={styles.subheader}>{subheader}</h3>}
-                {buttonText && <a href={action} className={styles.button}>{buttonText}</a>}
+                {buttonText && action && <Link to={action} className={styles.button}>{buttonText}</Link>}
             </div>
         </div>
     )
