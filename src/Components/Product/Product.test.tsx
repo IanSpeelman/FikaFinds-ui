@@ -8,7 +8,7 @@ describe("Product component", () => {
     it("should render with all the properties", () => {
         const { container } = render(
             <BrowserRouter>
-                <Product product={{ id: 1, name: "product", price: 5, category: "category", image: "image" }} />
+                <Product product={{ id: 1, name: "product", price: 5, category: "category", image: "image", specifications: 'key:value', description: 'description' }} />
             </BrowserRouter>
         )
 
