@@ -10,7 +10,7 @@ The application is part of a microservices architecture:
 
 - [**FikaFinds UI (This repository)**](https://github.com/IanSpeelman/FikaFinds-ui): Frontend interface built with React and Node.js
 - [**Products Service**](https://github.com/IanSpeelman/FikaFinds-products): Handles product-related CRUD operations
-- **Authentication Service**: (Coming soon) Will handle user authentication
+- [**Authentication Service**](https://github.com/IanSpeelman/FikaFinds-authentication): handles user authentication
 - **Orders Service**: (Coming soon) Will manage order processing
 
 ## Prerequisites
@@ -42,6 +42,7 @@ cd FikaFinds
 ```bash
 git clone https://github.com/IanSpeelman/FikaFinds-ui.git
 git clone https://github.com/IanSpeelman/FikaFinds-products.git
+git clone https://github.com/IanSpeelman/FikaFinds-authentication.git
 ```
 
 ### 3. Environment Setup
@@ -49,10 +50,18 @@ git clone https://github.com/IanSpeelman/FikaFinds-products.git
 Create a `.env` file in the root directory and copy it to the UI folder:
 
 ```env
-DBUSER=your_database_user
-DBPASS=your_database_password
-DBDB=your_database_name
-DBHOST=service-database
+
+DBPASS=<postgres-password-here>
+DBUSER=<postgres-username-here>
+DBPRODUCTS=<database-name-for-products-services>
+DBUSERS=<database-name-for-users-service>
+USERSDBHOST=users-database
+PRODUCTSDBHOST=products-database
+USERSDBPORT=5433
+PRODUCTSDBPORT=5432
+JWTSECRET=<jwt-secret-here>
+
+VITE_AUTHENTICATION_HOST=http://localhost:3001
 VITE_PRODUCT_HOST=http://localhost:3000
 ```
 
@@ -70,7 +79,7 @@ copy .env FikaFinds-ui\.env
 
 ### 4. Docker Compose Configuration
 
-Create a `docker-compose.yml` file in the root directory:
+Create a `compose.yml` file in the root directory:
 
 ```yaml
 services:
@@ -89,7 +98,7 @@ services:
             - src/
           action: rebuild
 
-  service-products:
+  products:
     build: ./FikaFinds-products
     ports:
       - "3000:3000"
@@ -98,7 +107,7 @@ services:
     env_file:
       - .env
     depends_on:
-      service-database:
+      products-database:
         condition: service_healthy
     develop:
       watch:
@@ -109,23 +118,59 @@ services:
             - src/
           action: rebuild
 
-  service-database:
+  authentication:
+    build: ./FikaFinds-authentication
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./FikaFinds-authentication/src:/app/src/
+    env_file:
+      - .env
+    depends_on:
+      users-database:
+        condition: service_healthy
+    develop:
+      watch:
+        - path: ./FikaFinds-authentication
+          target: /
+          ignore:
+            - node_modules/
+            - src/
+          action: rebuild
+
+  products-database:
     image: postgres:13.16
     ports:
-      - "5432:5432"
+      - "${PRODUCTSDBPORT}:5432"
     volumes:
       - "./db:/var/lib/postgresql/data"
     environment:
       POSTGRES_PASSWORD: ${DBPASS}
       POSTGRES_USER: ${DBUSER}
-      POSTGRES_DB: ${DBDB}
+      POSTGRES_DB: ${DBPRODUCTS}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DBUSER} -d ${DBDB}"]
+      test: ["CMD-SHELL", "pg_isready -U ${DBUSER} -d ${DBPRODUCTS}"]
       interval: 10s
       retries: 5
       start_period: 30s
       timeout: 10s
 
+  users-database:
+    image: postgres:13.16
+    ports:
+      - "${USERSDBPORT}:5432"
+    volumes:
+      - "./db2:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_PASSWORD: ${DBPASS}
+      POSTGRES_USER: ${DBUSER}
+      POSTGRES_DB: ${DBUSERS}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DBUSER} -d ${DBUSERS}"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
 ```
 
 ### 5. Start the Application
@@ -174,5 +219,5 @@ docker build -t FikaFinds-ui .
 Run the container:
 
 ```bash
-docker run -p 3000:3000 FikaFinds-ui
+docker run -p 5173:5173 FikaFinds-ui
 ```
