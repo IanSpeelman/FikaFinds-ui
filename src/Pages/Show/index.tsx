@@ -5,6 +5,7 @@ const host = import.meta.env.VITE_PRODUCT_HOST
 import { notificationItem, product, shoppingCartType } from "../../utils/types"
 import { useState } from "react"
 import parseSpecifications from "../../utils/parseSpecifications"
+import ImageGalery from "../../Components/ImageGalery"
 
 
 type ShowProps = {
@@ -76,15 +77,7 @@ export default function Show({ notificationItem, shoppingCart }: ShowProps) {
     if (product !== null) {
         return (
             <div className={styles.container}>
-                <div className={styles.imagecontainer}>
-                    <img src={product.image} alt={product.name} className={styles.image} />
-                    <div className={styles.imageselector}>
-                        <img src={product.image} alt={product.name} className={styles.handle} />
-                        <img src={product.image} alt={product.name} className={styles.handle} />
-                        <img src={product.image} alt={product.name} className={styles.handle} />
-                        <img src={product.image} alt={product.name} className={styles.handle} />
-                    </div>
-                </div>
+                <ImageGalery product={product} />
                 <div className={styles.product}>
                     <p className={styles.categorie}>{product.category}</p>
                     <h3 className={styles.productname}>{product.name}</h3>
