@@ -31,8 +31,6 @@ export default function Filter({ products, setProducts }: FilterProps) {
         return arr.reduce((acc, cur) => cur.price > acc ? cur.price : acc, -Infinity)
     }
 
-
-
     // function checkMinValue(e: React.ChangeEvent<HTMLInputElement>) {
     //     if (parseInt(e.target.value) < range.max) {
     //         setRange({ ...range, min: parseInt(e.target.value) })

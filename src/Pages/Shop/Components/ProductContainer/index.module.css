@@ -17,4 +17,9 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
 }
+.noProducts {
+    text-align: center;
+    margin: 128px;
+    grid-column: 1/5;
+}
 

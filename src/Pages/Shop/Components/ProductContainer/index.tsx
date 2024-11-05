@@ -53,6 +53,7 @@ export default function ProductContainer({ products, setProducts }: ProductConta
                 {products.map(product => {
                     return <Product key={product.id} product={product} />
                 })}
+                {products.length === 0 && <p className={styles.noProducts}>No products found!</p>}
             </div>
         </div>
     )
