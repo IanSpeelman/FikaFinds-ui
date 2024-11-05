@@ -5,6 +5,7 @@ import Home from './Pages/Home/index.tsx'
 import Layout from "./Pages/Layout/index.tsx"
 import Shop from './Pages/Shop/index.tsx'
 import Login from './Pages/Login/index.tsx'
+import Profile from './Pages/Profile/index.tsx'
 import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { cartItemType, notificationItem, notificationType, shoppingCartType } from './utils/types.ts'
@@ -53,6 +54,7 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/login" element={<Login setToken={setToken} notification={notificationItem} />} />
                     <Route path="/show/:id" element={<Show notificationItem={notificationItem} shoppingCart={shoppingCart} />} />
+                    <Route path="/profile" element={<Profile user={user} />} />
                 </Route>
             </Routes >
         </BrowserRouter >
