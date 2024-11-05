@@ -3,16 +3,25 @@ import Hero from "../../Components/Hero";
 import styles from './index.module.css'
 const host = import.meta.env.VITE_AUTHENTICATION_HOST
 import { useNavigate } from 'react-router-dom'
-import { ItemsRefs, notificationItem } from "../../utils/types";
+import { ItemsRefs, notificationItem, user } from "../../utils/types";
 import { isValidEmail, isValidPassword, equalStrings } from "../../utils/CheckCredentials";
 
 
 type LoginProps = {
     notification: notificationItem
     setToken: React.Dispatch<SetStateAction<string>>
+    user: user
 }
 
-export default function Login({ notification, setToken }: LoginProps) {
+export default function Login({ user, notification, setToken }: LoginProps) {
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (user) {
+            navigate('/profile')
+        }
+
+    }, [user])
 
     const items = useRef<ItemsRefs>(
         {
@@ -42,7 +51,6 @@ export default function Login({ notification, setToken }: LoginProps) {
         email: "",
         password: ""
     })
-    const navigate = useNavigate()
 
     function setJwt(headers: Headers) {
         const token = headers.get("Authorization") || ""

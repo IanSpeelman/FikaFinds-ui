@@ -52,7 +52,7 @@ function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/shop" element={<Shop />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route path="/login" element={<Login setToken={setToken} notification={notificationItem} />} />
+                    <Route path="/login" element={<Login user={user} setToken={setToken} notification={notificationItem} />} />
                     <Route path="/show/:id" element={<Show notificationItem={notificationItem} shoppingCart={shoppingCart} />} />
                     <Route path="/profile" element={<Profile user={user} />} />
                 </Route>
