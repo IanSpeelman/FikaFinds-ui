@@ -1,7 +1,7 @@
 import styles from './index.module.css'
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
-import { SetStateAction, useState } from 'react';
+import { SetStateAction, useState, useEffect } from 'react';
 import { product } from '../../../../utils/types';
 
 
@@ -12,34 +12,63 @@ type FilterProps = {
 
 
 export default function Filter({ products, setProducts }: FilterProps) {
-    const minPrice = 0;
-    const maxPrice = 100;
+    const [minPrice, setMinPrice] = useState(0)
+    const [maxPrice, setMaxPrice] = useState(100)
     const [query, setQuery] = useState("")
     const [range, setRange] = useState<{ min: number, max: number }>({ min: minPrice, max: maxPrice })
+    const [allProducts, setAllProducts] = useState<product[] | []>([])
+    const [loaded, setLoaded] = useState(false)
+    const [reload, setReload] = useState(false)
 
-    function checkMinValue(e: React.ChangeEvent<HTMLInputElement>) {
-        if (parseInt(e.target.value) < range.max) {
-            setRange({ ...range, min: parseInt(e.target.value) })
-        }
-        else {
-            setRange({ ...range, min: range.max - 1 })
-        }
+
+
+
+    function lowPrice(arr: product[]) {
+        return arr.reduce((acc, cur) => cur.price < acc ? cur.price : acc, Infinity)
     }
-    function checkMaxValue(e: React.ChangeEvent<HTMLInputElement>) {
-        if (parseInt(e.target.value) > range.min) {
-            setRange({ ...range, max: parseInt(e.target.value) })
-        }
-        else {
-            setRange({ ...range, max: range.min + 1 })
-        }
+
+    function highPrice(arr: product[]) {
+        return arr.reduce((acc, cur) => cur.price > acc ? cur.price : acc, -Infinity)
     }
+
+
+
+    // function checkMinValue(e: React.ChangeEvent<HTMLInputElement>) {
+    //     if (parseInt(e.target.value) < range.max) {
+    //         setRange({ ...range, min: parseInt(e.target.value) })
+    //     }
+    //     else {
+    //         setRange({ ...range, min: range.max - 1 })
+    //     }
+    // }
+    // function checkMaxValue(e: React.ChangeEvent<HTMLInputElement>) {
+    //     if (parseInt(e.target.value) > range.min) {
+    //         setRange({ ...range, max: parseInt(e.target.value) })
+    //     }
+    //     else {
+    //         setRange({ ...range, max: range.min + 1 })
+    //     }
+    // }
 
     function handleQueryChange(e: React.ChangeEvent<HTMLInputElement>) {
         setQuery(e.target.value)
-        const filteredProducts = products.filter(product => product.name.includes(query))
-
     }
 
+
+
+    useEffect(() => {
+
+        if (!loaded && products.length > 0) {
+            setMinPrice(lowPrice(products))
+            setMaxPrice(highPrice(products))
+            setRange({ min: lowPrice(products), max: highPrice(products) })
+            setAllProducts(products)
+            setLoaded(true)
+        }
+        const filteredProducts = allProducts.filter(product => product.name.toLowerCase().includes(query.toLowerCase()) && range.min <= product.price && range.max >= product.price)
+        setProducts(filteredProducts)
+
+    }, [query, products.length, reload])
 
     return (
         <div className={styles.container}>
@@ -55,15 +84,17 @@ export default function Filter({ products, setProducts }: FilterProps) {
                     <Slider value={[range.min, range.max]} allowCross={false} range min={minPrice} max={maxPrice} onChange={(e) => {
                         if (Array.isArray(e)) {
                             setRange({ min: e[0], max: e[1] })
+                            setReload(!reload)
                         }
                     }}
                         handleStyle={[{ backgroundColor: "#5C7F3F", borderWidth: "0px", opacity: "1" }, { backgroundColor: "#5C7F3F", borderWidth: "0px", opacity: "1" }]}
                         trackStyle={[{ backgroundColor: "#354A24" }]} />
                     <div className={styles.priceinputs}>
                         <div className={styles.priceinput}>
-                            <input type="text" value={range.min} max={range.max} onChange={(e) => checkMinValue(e)} className={styles.priceinput} /> </div>
+                            <input type="text" value={range.min} max={range.max} className={styles.priceinput} disabled />
+                        </div>
                         <div className={styles.priceinput}>
-                            <input type="text" value={range.max} max={range.min} onChange={(e) => checkMaxValue(e)} className={styles.priceinput} />
+                            <input type="text" value={range.max} max={range.min} className={styles.priceinput} disabled />
                         </div>
                     </div>
                 </div>

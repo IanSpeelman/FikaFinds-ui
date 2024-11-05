@@ -23,6 +23,7 @@
     border-right: 0;
     border: none;
     text-align: center;
+    outline: none;
 }
 .button{
     height: 100%;
