@@ -1,25 +1,40 @@
+import { useEffect, useState } from "react";
+import { product } from "../../../../utils/types";
 import Product from "../../../../Components/Product";
 import styles from './index.module.css'
+const host = import.meta.env.VITE_PRODUCT_HOST;
 
 export default function Featured() {
 
-    const product = {
-        id: 42069,
-        name: "testname",
-        image: "test",
-        price: 99,
-        category: "test",
-    }
+    const [featured, setFeatured] = useState<product[] | []>([])
+    const [loading, setLoading] = useState(true)
 
+    useEffect(() => {
+        (async () => {
 
-    return (
-        <div className={styles.container}>
-            <h3 className={styles.header}>FEATURED</h3>
-            <div className={styles.products}>
-                <Product product={product} />
-                <Product product={product} />
-                <Product product={product} />
+            const response = await fetch(`${host}/products`)
+            if (response.ok) {
+                const data = await response.json()
+                const tmp = []
+                for (let i = 0; i < 3; i++) {
+                    const num = Math.floor(Math.random() * data.length)
+                    console.log(num)
+                    tmp.push(data[num])
+                }
+                setFeatured(tmp)
+                console.log(tmp)
+                setLoading(false)
+            }
+        })();
+    }, [])
+
+    if (!loading)
+        return (
+            <div className={styles.container}>
+                <h3 className={styles.header}>FEATURED</h3>
+                <div className={styles.products}>
+                    {featured && featured.map(product => <Product key={Math.random()} product={product} />)}
+                </div>
             </div>
-        </div>
-    )
+        )
 }
