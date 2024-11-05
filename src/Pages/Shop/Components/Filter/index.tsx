@@ -68,13 +68,6 @@ export default function Filter({ products, setProducts }: FilterProps) {
                     </div>
                 </div>
             </div>
-            <div className={styles.categoriescontainer}>
-                <h3 className={styles.title}>Categories</h3>
-                <p className={styles.categorie}>categorie1</p>
-                <p className={styles.categorie}>categorie1</p>
-                <p className={styles.categorie}>categorie1</p>
-                <p className={styles.categorie}>categorie1</p>
-            </div>
         </div>
     )
 }
