@@ -27,7 +27,7 @@ export default function Shop() {
             <div className={styles.container}>
                 <Filter products={products} setProducts={setProducts} />
                 <div className={styles.line}></div>
-                <ProductContainer products={products} />
+                <ProductContainer products={products} setProducts={setProducts} />
             </div>
         </>
     )
