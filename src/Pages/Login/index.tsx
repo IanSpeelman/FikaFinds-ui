@@ -10,7 +10,7 @@ import { isValidEmail, isValidPassword, equalStrings } from "../../utils/CheckCr
 type LoginProps = {
     notification: notificationItem
     setToken: React.Dispatch<SetStateAction<string>>
-    user: user
+    user: user | null
 }
 
 export default function Login({ user, notification, setToken }: LoginProps) {

@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import Hero from "../../Components/Hero"
 
 type ProfileProps = {
-    user: user
+    user: user | null
 }
 
 export default function Profile({ user }: ProfileProps) {
