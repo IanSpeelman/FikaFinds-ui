@@ -1,7 +1,8 @@
 import { SetStateAction } from 'react'
-import CartProduct from '../../../../../Components'
+import CartProduct from '../../../../../../Components/CartProduct'
 import styles from './index.module.css'
 import { notificationItem, shoppingCartType } from '../../../../../../utils/types'
+import { Link } from 'react-router-dom'
 
 
 type CartProps = {
