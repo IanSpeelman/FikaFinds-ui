@@ -1,5 +1,5 @@
 import { SetStateAction } from 'react'
-import CartProduct from './CartProduct'
+import CartProduct from '../../../../../Components'
 import styles from './index.module.css'
 import { notificationItem, shoppingCartType } from '../../../../../../utils/types'
 
