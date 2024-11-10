@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitest/config';
 import react from "@vitejs/plugin-react"
-console.log("config loaded")
 
 export default defineConfig({
     plugins: [react()],

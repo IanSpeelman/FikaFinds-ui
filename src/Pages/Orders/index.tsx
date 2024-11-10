@@ -35,7 +35,6 @@ export default function Order({ cart, notification, user }: OrderProps) {
                     },
                     body: JSON.stringify(body)
                 })
-                console.log(response)
                 if (response.ok) {
                     notification.setNotification({ message: 'order placed successfull', type: 'success' })
                     cart.setShoppingCart([])

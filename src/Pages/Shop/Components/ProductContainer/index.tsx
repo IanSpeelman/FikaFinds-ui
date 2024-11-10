@@ -33,7 +33,6 @@ export default function ProductContainer({ products, setProducts }: ProductConta
 
     useEffect(() => {
         if (select.current !== null) {
-            console.log(select.current.value)
             select.current.value === 'priceasc' && sortAsc()
             select.current.value === 'pricedesc' && sortDesc()
         }

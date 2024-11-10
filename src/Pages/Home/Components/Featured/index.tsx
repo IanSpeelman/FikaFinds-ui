@@ -18,11 +18,9 @@ export default function Featured() {
                 const tmp = []
                 for (let i = 0; i < 3; i++) {
                     const num = Math.floor(Math.random() * data.length)
-                    console.log(num)
                     tmp.push(data[num])
                 }
                 setFeatured(tmp)
-                console.log(tmp)
                 setLoading(false)
             }
         })();
