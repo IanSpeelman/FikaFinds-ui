@@ -15,8 +15,12 @@ import { user } from './utils/types.ts'
 import Order from './Pages/Orders/index.tsx'
 
 function App() {
+    let cart
 
-    const cart = JSON.parse(localStorage.getItem('cart') || '')
+    try {
+        cart = JSON.parse(localStorage.getItem('cart') || '')
+    }
+    catch (err) { }
     const [token, setToken] = useState(localStorage.getItem('Authorization-token') || "")
     const [user, setUser] = useState<user | null>(null)
 
