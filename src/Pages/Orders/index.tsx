@@ -26,14 +26,28 @@ export default function Order({ cart, notification, user }: OrderProps) {
                 products: cart.items
             }
 
-            const response = await fetch(`${host}/orders`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'Application/json',
-                },
-                body: JSON.stringify(body)
-            })
-            if (response.ok) {
+            try {
+
+                const response = await fetch(`${host}/orders`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'Application/json',
+                    },
+                    body: JSON.stringify(body)
+                })
+                console.log(response)
+                if (response.ok) {
+                    notification.setNotification({ message: 'order placed successfull', type: 'success' })
+                    cart.setShoppingCart([])
+                }
+                else {
+                    notification.setNotification({ message: 'Something went wrong, please try again', type: 'danger' })
+                }
+
+            }
+            catch (err) {
+                notification.setNotification({ message: 'Something went wrong, please try again', type: 'danger' })
+
             }
         }
     }
