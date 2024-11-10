@@ -1,20 +1,28 @@
 import styles from './index.module.css'
 import Hero from "../../Components/Hero";
-import { shoppingCartType, notificationItem } from '../../utils/types';
+import { shoppingCartType, notificationItem, user } from '../../utils/types';
 import CartProduct from '../../Components/CartProduct';
+import { Link } from 'react-router-dom';
 
 type OrderProps = {
     cart: shoppingCartType
     notification: notificationItem
+    user: user
 }
 
 
 
-export default function Order({ cart, notification }: OrderProps) {
+export default function Order({ cart, notification, user }: OrderProps) {
 
     const total = cart.items.reduce((acc, curr) => {
         return acc + (curr.amount * curr.product.price)
     }, 0)
+
+    function sendOrder() {
+        console.log('order sent :)')
+    }
+
+
 
     return (
         <>
@@ -40,7 +48,8 @@ export default function Order({ cart, notification }: OrderProps) {
                         <label className={styles.label} htmlFor='paypal'><img className={styles.paymentIcon} src="/assets/paypal.svg" alt="" /></label>
                     </div>
                     <div className={styles.price}>Total: {total}SEK</div>
-                    <button className={styles.button}>CONFIRM ORDER!</button>
+                    {user && <button className={styles.button} onClick={sendOrder}>CONFIRM ORDER!</button>}
+                    {!user && <Link to='/login' className={styles.button}>Login to order</Link>}
                 </div>
             </div>
         </>
