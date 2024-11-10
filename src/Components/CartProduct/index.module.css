@@ -4,8 +4,14 @@
     width: 100%;
     justify-content: space-around;
     align-items: center;
-    margin-top: 32px;
+    margin-top: 16px;
     padding: 0 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--black-20);
+}
+
+.container:last-of-type{
+    border-bottom: 0;
 }
 .image{
     height: 64px;
