@@ -38,6 +38,7 @@ export type shoppingCartType = {
 }
 
 export interface user extends JwtPayload {
+    id?: number;
     email: string,
     firstName: string
 }

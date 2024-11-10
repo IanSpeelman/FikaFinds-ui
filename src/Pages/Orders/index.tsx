@@ -3,11 +3,12 @@ import Hero from "../../Components/Hero";
 import { shoppingCartType, notificationItem, user } from '../../utils/types';
 import CartProduct from '../../Components/CartProduct';
 import { Link } from 'react-router-dom';
+const host = import.meta.env.VITE_ORDERS_HOST
 
 type OrderProps = {
     cart: shoppingCartType
     notification: notificationItem
-    user: user
+    user: user | null
 }
 
 
@@ -18,8 +19,23 @@ export default function Order({ cart, notification, user }: OrderProps) {
         return acc + (curr.amount * curr.product.price)
     }, 0)
 
-    function sendOrder() {
-        console.log('order sent :)')
+    async function sendOrder() {
+        if (user && cart.items.length > 0) {
+            const body = {
+                user: user.id,
+                products: cart.items
+            }
+
+            const response = await fetch(`${host}/orders`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'Application/json',
+                },
+                body: JSON.stringify(body)
+            })
+            if (response.ok) {
+            }
+        }
     }
 
 
