@@ -27,11 +27,15 @@
 .paymentMethod{
     display: flex;
     flex-direction: row;
+    align-items: center;
     gap: 24px;
 }
 .paymentIcon{
-    height: 32px;
+    height: 100%;
     width: auto;
+}
+.label{
+    height: 32px;
 }
 .price{
 }
@@ -42,4 +46,5 @@
  width: 100%;
  color: var(--white);
  border: none;
+ font-weight: bold;
 }

@@ -56,7 +56,7 @@ function App() {
                     <Route path="/login" element={<Login user={user} setToken={setToken} notification={notificationItem} />} />
                     <Route path="/show/:id" element={<Show notificationItem={notificationItem} shoppingCart={shoppingCart} />} />
                     <Route path="/profile" element={<Profile user={user} />} />
-                    <Route path="/order" element={<Order />} />
+                    <Route path="/order" element={<Order cart={shoppingCart} notification={notificationItem} />} />
                 </Route>
             </Routes >
         </BrowserRouter >
