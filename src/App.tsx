@@ -12,6 +12,7 @@ import { cartItemType, notificationItem, notificationType, shoppingCartType } fr
 import Show from './Pages/Show/index.tsx'
 import { jwtDecode } from 'jwt-decode'
 import { user } from './utils/types.ts'
+import Order from './Pages/Orders/index.tsx'
 
 function App() {
 
@@ -55,6 +56,7 @@ function App() {
                     <Route path="/login" element={<Login user={user} setToken={setToken} notification={notificationItem} />} />
                     <Route path="/show/:id" element={<Show notificationItem={notificationItem} shoppingCart={shoppingCart} />} />
                     <Route path="/profile" element={<Profile user={user} />} />
+                    <Route path="/order" element={<Order />} />
                 </Route>
             </Routes >
         </BrowserRouter >

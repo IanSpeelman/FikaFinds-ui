@@ -1,11 +1,11 @@
 import styles from './index.module.css'
-import { cartItemType, notificationItem, shoppingCartType } from '../../../../../../../utils/types'
+import { cartItemType, notificationItem, shoppingCartType } from '../../utils/types'
 
 
 type CartProductProps = {
     item: cartItemType,
-    shoppingCart: shoppingCartType
-    notificationItem: notificationItem
+    shoppingCart?: shoppingCartType
+    notificationItem?: notificationItem
 }
 
 

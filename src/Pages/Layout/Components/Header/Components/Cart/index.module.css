@@ -89,6 +89,8 @@
     height: fit-content;
 }
 .button{
+    display: block;
+    text-align: center;
     width: 100%;
     background-color: var(--primary-light);
     padding: 16px;

@@ -38,7 +38,7 @@ export default function Cart({ isOpen, setIsOpen, shoppingCart, notificationItem
                         <p>Total:</p>
                         <p className={styles.price}>{total}<span className={styles.currency}>SEK</span></p>
                     </div>
-                    <button className={styles.button}>Checkout!</button>
+                    <Link to='/order' className={styles.button} onClick={(e) => handleClose(e)}>Checkout!</Link>
                 </div>
             </div>
         </div>
