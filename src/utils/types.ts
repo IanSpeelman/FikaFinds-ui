@@ -61,3 +61,17 @@ export interface ItemsRefs {
     login: LoginRefs; // Reference to login fields
     register: RegisterRefs; // Reference to register fields
 }
+
+
+export type orderRequest = {
+    user: number,
+    id: number
+    products: orderProductRequest[]
+}
+
+export type orderProductRequest = {
+    id: number
+    amount: number,
+    product: product
+
+}
