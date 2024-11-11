@@ -38,6 +38,7 @@ export default function Order({ cart, notification, user }: OrderProps) {
                 if (response.ok) {
                     notification.setNotification({ message: 'order placed successfull', type: 'success' })
                     cart.setShoppingCart([])
+                    localStorage.setItem('cart', '[]')
                 }
                 else {
                     notification.setNotification({ message: 'Something went wrong, please try again', type: 'danger' })
