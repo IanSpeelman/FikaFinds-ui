@@ -37,7 +37,7 @@ export default function Profile({ user }: ProfileProps) {
         <div className={styles.container}>
             <Hero header='Profile' size="medium" />
             <div className={styles.orders}>
-                <h1>orders</h1>
+                <h1>Orders</h1>
                 {orders.length > 1 && orders.map(order => <Order key={order.id} order={order} />)}
             </div>
         </div>

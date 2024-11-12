@@ -19,11 +19,16 @@
  color: var(--white);
  border: none;
 }
+.products{
+    padding-bottom: 64px;
+    overflow: hidden;
+    height: 100%;
+    transition: all 200ms ease-in-out;
+    max-height: 500px;
+}
 
 .hidden{
-    display: none;
+    max-height: 0;
+    padding-bottom: 0px;
 }
 
-.products{
-    margin-bottom: 64px;
-}
