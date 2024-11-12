@@ -66,7 +66,7 @@ export interface ItemsRefs {
 export type orderRequest = {
     user: number,
     id: number
-    products: orderProductRequest[]
+    OrderProducts: orderProductRequest[]
 }
 
 export type orderProductRequest = {
