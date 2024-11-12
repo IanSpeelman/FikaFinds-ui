@@ -23,3 +23,7 @@
 .hidden{
     display: none;
 }
+
+.products{
+    margin-bottom: 64px;
+}
