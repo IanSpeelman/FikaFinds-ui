@@ -21,7 +21,6 @@ export default function Profile({ user }: ProfileProps) {
             const response = await fetch(`${host}/orders/user/${user?.id}`)
             if (response.ok) {
                 const data = await response.json()
-                console.log(data)
                 setOrders(data)
             }
         }
@@ -32,14 +31,7 @@ export default function Profile({ user }: ProfileProps) {
         else {
             getOrders()
         }
-
-
-
-
-
     }, [user])
-
-
 
     return (
         <div className={styles.container}>
@@ -48,7 +40,6 @@ export default function Profile({ user }: ProfileProps) {
                 <h1>orders</h1>
                 {orders.length > 1 && orders.map(order => <Order key={order.id} order={order} />)}
             </div>
-
         </div>
     )
 }
