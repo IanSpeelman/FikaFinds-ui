@@ -4,8 +4,8 @@ import { cartItemType, notificationItem, shoppingCartType } from '../../utils/ty
 
 type CartProductProps = {
     item: cartItemType,
-    shoppingCart?: shoppingCartType
-    notificationItem?: notificationItem
+    shoppingCart: shoppingCartType
+    notificationItem: notificationItem
 }
 
 
