@@ -63,13 +63,13 @@ export interface ItemsRefs {
 }
 
 
-export type orderRequest = {
+export type orderResponse = {
     user: number,
     id: number
-    OrderProducts: orderProductRequest[]
+    OrderProducts: orderProductResponse[]
 }
 
-export type orderProductRequest = {
+export type orderProductResponse = {
     id: number
     amount: number,
     product: product

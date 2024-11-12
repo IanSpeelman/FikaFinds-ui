@@ -1,11 +1,11 @@
-import { orderRequest, cartItemType } from "../../../utils/types"
+import { orderResponse, cartItemType } from "../../../utils/types"
 import OrderProduct from '../../../Components/OrderProduct'
 import styles from './Order.module.css'
 import { useState, useEffect } from 'react'
 const host = import.meta.env.VITE_PRODUCT_HOST
 
 type OrderProps = {
-    order: orderRequest
+    order: orderResponse
 }
 export default function Order({ order }: OrderProps) {
     const [expanded, setExpanded] = useState(false)

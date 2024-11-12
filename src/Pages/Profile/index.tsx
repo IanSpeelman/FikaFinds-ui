@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { orderRequest, user } from "../../utils/types"
+import { orderResponse, user } from "../../utils/types"
 import { useEffect, useState } from "react"
 import Order from "../Profile/Components/Order"
 import Hero from "../../Components/Hero"
@@ -13,7 +13,7 @@ type ProfileProps = {
 
 export default function Profile({ user }: ProfileProps) {
     const navigate = useNavigate()
-    const [orders, setOrders] = useState<orderRequest[] | []>([])
+    const [orders, setOrders] = useState<orderResponse[] | []>([])
 
 
     useEffect(() => {
