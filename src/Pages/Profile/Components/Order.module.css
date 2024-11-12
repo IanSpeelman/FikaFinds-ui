@@ -1,0 +1,25 @@
+.container{
+    border-bottom: 1px solid var(--black-20);
+}
+.order{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+}
+.text{
+}
+
+.button{
+ text-align: center;
+ background-color: var(--primary-light);
+ padding: 16px 32px;
+ width: fit-content;
+ color: var(--white);
+ border: none;
+}
+
+.hidden{
+    display: none;
+}

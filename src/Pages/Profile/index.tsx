@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import { orderRequest, user } from "../../utils/types"
 import { useEffect, useState } from "react"
+import Order from "../Profile/Components/Order"
 import Hero from "../../Components/Hero"
+import styles from './index.module.css'
+
 const host = import.meta.env.VITE_ORDERS_HOST
 
 type ProfileProps = {
@@ -39,10 +42,12 @@ export default function Profile({ user }: ProfileProps) {
 
 
     return (
-        <div className="container">
+        <div className={styles.container}>
             <Hero header='Profile' size="medium" />
-            <h1>orders</h1>
-            {orders && orders.map(order => <p key={order.id}>order id: {order.id}</p>)}
+            <div className={styles.orders}>
+                <h1>orders</h1>
+                {orders.length > 1 && orders.map(order => <Order key={order.id} order={order} />)}
+            </div>
 
         </div>
     )
