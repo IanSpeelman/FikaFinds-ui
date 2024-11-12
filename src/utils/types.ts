@@ -70,8 +70,11 @@ export type orderResponse = {
 }
 
 export type orderProductResponse = {
-    id: number
+    id: number,
+    OrderId: number
     amount: number,
     product: product
+    price: number
+
 
 }
