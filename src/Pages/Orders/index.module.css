@@ -48,3 +48,29 @@
  border: none;
  font-weight: bold;
 }
+
+@media screen and (max-width: 1500px) {
+    .container{
+    padding: 128px 128px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .header{
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .container{
+        flex-direction: column;
+    }
+    .payment{
+        margin-left: auto;
+        width: 300px;
+        text-align: center;
+    }
+    .payment > * {
+        margin: 0 auto;
+    }
+}

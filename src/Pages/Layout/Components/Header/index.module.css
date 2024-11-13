@@ -6,6 +6,7 @@
 }
 .title{
     display: inline;
+    font-size: 28px;
 }
 .nav{
 }
@@ -27,10 +28,6 @@
     position: relative;
     width: 24px;
     height: 24px;
-}
-
-.scale{
-    transform: scale(110%)
 }
 
 .cartOverlay{
@@ -69,5 +66,18 @@
     position: absolute;
 }
 
+@media screen and (max-width: 1500px){
+    .container{
+    padding: 16px 128px;
+    }
+}
 
-
+@media screen and (max-width: 900px){
+    .container{
+    justify-content: center;
+    margin: 16px;
+    }
+    .title{
+        display: none;
+    }
+}

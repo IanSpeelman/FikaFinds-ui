@@ -8,7 +8,7 @@ export default function Contact() {
 
     return (
         <div className={styles.wrapper}>
-            <Hero header="Contact us!" />
+            <Hero header="Contact us!" size="medium" />
             <div className={styles.container}>
                 <div className={styles.section}>
                     <h3>Send A Message!</h3>

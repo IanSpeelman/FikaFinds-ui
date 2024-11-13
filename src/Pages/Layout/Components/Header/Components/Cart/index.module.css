@@ -116,3 +116,23 @@
     font-size: .65em ;
     font-weight: normal;
 }
+
+@media screen and (max-width: 1600px){
+    .hideposition{
+        right: -40vw;
+    }
+    .cart{
+        width: 40vh;
+    }
+}
+
+@media screen and (max-width: 1600px){
+    .hideposition{
+        right: -60vw;
+    }
+
+    .cart{
+        width: 60vh;
+    }
+
+}

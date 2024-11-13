@@ -16,3 +16,20 @@
     align-items: center;
     gap: 32px;
 }
+
+@media screen and (max-width: 1500px){
+    .container{
+        padding: 128px;
+    }
+}
+
+
+@media screen and (max-width: 1000px){
+    .container{
+        text-align: center;
+    }
+    .products{
+        margin-top: 64px;
+        flex-direction: column;
+    }
+}

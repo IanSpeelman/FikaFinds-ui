@@ -1,6 +1,15 @@
-.container{
-}
 .orders{
     margin: 128px 256px;
 }
 
+@media screen and (max-width: 1400px) {
+    .orders{
+    margin: 128px 128px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .orders{
+    margin: 128px 32px;
+    }
+}

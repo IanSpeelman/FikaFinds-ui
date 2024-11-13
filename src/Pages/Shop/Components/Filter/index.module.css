@@ -57,3 +57,9 @@
     gap: 32px;
 }
 
+@media screen and (max-width: 1600px) {
+    .container{
+        min-width: 30%;
+
+    }
+}

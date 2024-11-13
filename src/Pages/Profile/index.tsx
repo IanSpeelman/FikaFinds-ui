@@ -38,7 +38,8 @@ export default function Profile({ user }: ProfileProps) {
             <Hero header='Profile' size="medium" />
             <div className={styles.orders}>
                 <h1>Orders</h1>
-                {orders.length > 1 && orders.map(order => <Order key={order.id} order={order} />)}
+                {orders.length > 0 && orders.map(order => <Order key={order.id} order={order} />)}
+                {!orders.length && <p>No orders found</p>}
             </div>
         </div>
     )

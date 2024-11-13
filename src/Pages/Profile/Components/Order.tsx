@@ -37,7 +37,7 @@ export default function Order({ order }: OrderProps) {
             <div className={styles.order}>
                 <p className={styles.text}>order #{order.id}</p>
                 <p className={styles.text}>status: {'processing'}</p>
-                <p className={styles.text}>total: {total}</p>
+                <p className={styles.price}>total: {total}</p>
                 <button className={styles.button} onClick={handleClick}>view order</button>
             </div >
             <div className={`${!expanded && styles.hidden} ${styles.products}`}>
