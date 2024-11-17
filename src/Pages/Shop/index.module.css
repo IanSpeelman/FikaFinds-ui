@@ -4,8 +4,6 @@
     padding: 128px;
     flex-direction: row;
     align-items: stretch;
-    max-width: 80vh;
-    overflow: hidden;
 }
 
 .line{
@@ -16,8 +14,12 @@
 
 @media screen and (max-width: 600px) {
     .container{
+        max-width: 80vh;
+        overflow: hidden;
         flex-direction: column;
         padding: 128px 64px;
     }
-    
+    .line{
+        display: none;
+    }
 }
