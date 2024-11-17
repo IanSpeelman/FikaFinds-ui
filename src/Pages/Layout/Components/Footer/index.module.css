@@ -14,6 +14,7 @@
 }
 .li{
     list-style: none;
+    margin-top: 0;
 }
 .link{
     text-decoration: none;
@@ -63,4 +64,10 @@
         flex-direction: column;
         gap: 32px;
     }
+}
+
+@media screen and (max-width: 600px){
+    .ul > li:first-child{
+        margin-top: 0;
+    } 
 }

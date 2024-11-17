@@ -4,6 +4,7 @@
     flex-direction: column;
     gap: 72px;
 }
+
 .inputgroup{
     height: 48px;
     width: 100%;
@@ -12,11 +13,13 @@
     align-items: center;
     border: 1px solid var(--black-20)
 }
+
 .searchicon{
     width: 100%;
     height: 100%;
     fill: var(--white)
 }
+
 .input{
     height: 100%;
     width: 100%;
@@ -25,6 +28,7 @@
     text-align: center;
     outline: none;
 }
+
 .button{
     height: 100%;
     padding: 4px;
@@ -32,34 +36,45 @@
     border: none;
     border-radius: 0;
 }
+
 .title{
 }
+
 .pricefilter{
+    z-index: -1;
 }
+
 .priceinputs{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
 }
+
 .priceinput{
     width: 64px;
 }
+
 .sek{
 }
+
 .categorie{
 }
+
 .categoriescontainer{
     
 }
+
 .pricefilter{
     display: flex;
     flex-direction: column;
     gap: 32px;
 }
 
+
 @media screen and (max-width: 1600px) {
     .container{
         min-width: 30%;
 
     }
+
 }

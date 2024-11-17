@@ -100,7 +100,6 @@
     }
 }
 
-
 @media screen and (max-width: 700px){
     .container{
         padding: 128px 32px;
@@ -109,5 +108,8 @@
         flex-direction: column;
         width: max-content;
         margin: 0 auto;
+    }
+    .form{
+        margin-top: 48px;
     }
 }

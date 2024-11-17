@@ -79,6 +79,7 @@ export default function Show({ notificationItem, shoppingCart }: ShowProps) {
     if (product !== null) {
         return (
             <div className={styles.container}>
+                <h3 className={styles.mobileproductname}>{product.name}</h3>
                 <ImageGalery product={product} />
                 <div className={styles.product}>
                     <p className={styles.categorie}>{product.category}</p>

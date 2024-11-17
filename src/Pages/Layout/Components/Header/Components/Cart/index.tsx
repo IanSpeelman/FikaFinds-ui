@@ -1,4 +1,4 @@
-import { SetStateAction } from 'react'
+import { SetStateAction, useEffect } from 'react'
 import CartProduct from '../../../../../../Components/CartProduct'
 import styles from './index.module.css'
 import { notificationItem, shoppingCartType } from '../../../../../../utils/types'
@@ -14,12 +14,21 @@ type CartProps = {
 
 
 export default function Cart({ isOpen, setIsOpen, shoppingCart, notificationItem }: CartProps) {
-
     function handleClose(e: React.MouseEvent<HTMLDivElement>) {
         if (e.target == e.currentTarget) {
             setIsOpen(false)
         }
     }
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add(styles.noscroll)
+        }
+        else {
+            document.body.classList.remove(styles.noscroll)
+        }
+
+    }, [isOpen])
 
     const total = shoppingCart.items.reduce((total, item) => total + (item.amount * item.product.price), 0)
 

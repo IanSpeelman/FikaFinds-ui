@@ -80,6 +80,10 @@ gap: 128px;
 
 @media screen and (max-width: 700px) {
     .container{
-        padding: 128px 32px;
+        width: max-content;
+        flex-direction: column;
+        padding: 128px 0 ;
+        margin: 0 auto; 
+        align-items: flex-start;
     }
 }

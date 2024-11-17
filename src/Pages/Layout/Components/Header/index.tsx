@@ -1,4 +1,4 @@
-import { useState, useEffect, SetStateAction } from 'react'
+import { useState, useEffect, SetStateAction, useCallback, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import Cart from './Components/Cart'
 import styles from './index.module.css'
@@ -15,16 +15,32 @@ type HeaderProps = {
 export default function Header({ user, setToken, shoppingCart, notificationItem }: HeaderProps) {
 
     const [isOpen, setIsOpen] = useState(false)
-
+    const [active, setActive] = useState(false)
     const [cartCount, setCartCount] = useState(0)
-
-
+    const header = useRef<HTMLDivElement | null>(null)
 
     useEffect(() => {
-
         setCartCount(shoppingCart.items.length)
-
     }, [shoppingCart])
+
+    const handleNavClose = useCallback((e: MouseEvent) => {
+        if (header.current) {
+            const target = e.target as Node;
+            if (!header.current.contains(target)) {
+                setActive(false)
+            }
+        }
+    }, [])
+
+    useEffect(() => {
+        if (active) {
+            document.addEventListener("click", handleNavClose)
+        }
+        else {
+            document.removeEventListener("click", handleNavClose)
+        }
+
+    }, [active])
 
 
     function handleOpen() {
@@ -38,19 +54,35 @@ export default function Header({ user, setToken, shoppingCart, notificationItem 
         notificationItem.setNotification({ message: 'You are logged out', type: 'info' })
     }
 
+    function hamburgerToggle() {
+        setActive(!active)
+    }
+
+
 
     return (
-        <header>
+        <header ref={header}>
             <div className={styles.container}>
+                <div className={styles.hamburgercontainer}>
+                    <h1 className={styles.mobiletitle}>FIKA FINDS</h1>
+                    <div className={`${styles.hamburger} ${active && styles.active}`} onClick={hamburgerToggle}>
+                        <div className={styles.bar}></div>
+                        <div className={styles.cross}>
+                            <div className={styles.bar}></div>
+                            <div className={styles.bar}></div>
+                        </div>
+                        <div className={styles.bar}></div>
+                    </div>
+                </div>
                 <h1 className={styles.title}>FIKA FINDS</h1>
                 <nav className={styles.nav}>
-                    <ul className={styles.ul}>
+                    <ul className={`${styles.ul} ${!active && styles.collapse}`} onClick={hamburgerToggle}>
                         <li className={styles.li}><Link to="/" className={styles.link}>HOME</Link></li>
                         <li className={styles.li}><Link to="/about" className={styles.link}>ABOUT</Link></li>
                         <li className={styles.li}><Link to="/shop" className={styles.link}>SHOP</Link></li>
                         <li className={styles.li}><Link to="/contact" className={styles.link}>CONTACT</Link></li>
                         <div className={styles.icons}>
-                            <div className={styles.icon} onClick={handleOpen}>
+                            <div className={`${styles.icon} ${styles.cartbutton}`} onClick={handleOpen}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-basket3" viewBox="0 0 16 16">
                                     <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM3.394 15l-1.48-6h-.97l1.525 6.426a.75.75 0 0 0 .729.574h9.606a.75.75 0 0 0 .73-.574L15.056 9h-.972l-1.479 6z" />
                                 </svg>
@@ -65,6 +97,12 @@ export default function Header({ user, setToken, shoppingCart, notificationItem 
                         </div>
                     </ul>
                 </nav>
+            </div>
+            <div className={`${styles.mobileCartHandle}`} onClick={handleOpen}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-basket3" viewBox="0 0 16 16">
+                    <path d="M5.757 1.071a.5.5 0 0 1 .172.686L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-1A.5.5 0 0 1 .5 6h1.717L5.07 1.243a.5.5 0 0 1 .686-.172zM3.394 15l-1.48-6h-.97l1.525 6.426a.75.75 0 0 0 .729.574h9.606a.75.75 0 0 0 .73-.574L15.056 9h-.972l-1.479 6z" />
+                </svg>
+                <div className={styles.mobileCartOverlay}>{cartCount}</div>
             </div>
             <div className={styles.line}></div>
             <Cart isOpen={isOpen} setIsOpen={setIsOpen} shoppingCart={shoppingCart} notificationItem={notificationItem} />

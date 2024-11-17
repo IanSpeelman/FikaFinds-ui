@@ -63,3 +63,50 @@
 .listitem{
 }
 
+.mobileproductname{
+    display: none;
+}
+
+@media screen and (max-width: 1200px) {
+    .container{
+    padding: 128px 128px;
+    }
+    .product{
+    margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .container{
+    padding: 128px 64px;
+    }
+}
+
+@media screen and (max-width: 750px)  {
+    .container{
+
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+    .product, .specifications{
+        width: 80%;
+    }
+
+    .inputgroup{
+        width: 130px;
+    }
+    .inputControl{
+        width: 100%;
+    }
+    
+    .mobileproductname{
+        display: block;
+    }
+    .productname{
+        display: none;
+    }
+
+    
+}

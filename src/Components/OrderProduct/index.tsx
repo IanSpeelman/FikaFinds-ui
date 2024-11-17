@@ -11,7 +11,6 @@ type OrderProductProps = {
 
 export default function OrderProduct({ item, order }: OrderProductProps) {
 
-    console.log(order)
 
     return (
         <div className={styles.container}>

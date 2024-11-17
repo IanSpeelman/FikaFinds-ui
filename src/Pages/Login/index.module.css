@@ -1,7 +1,7 @@
 .container{
     padding: 128px 256px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 128px;
 }
 .form{
@@ -109,5 +109,6 @@
 @media screen and (max-width: 1400px) {
     .container{
     gap: 64px;
+    padding: 128px 32px;
     }
 }
