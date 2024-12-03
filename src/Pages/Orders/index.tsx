@@ -32,6 +32,7 @@ export default function Order({ cart, notification, user }: OrderProps) {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'Application/json',
+                        'Authorization': localStorage.getItem('Authorization-token') || ''
                     },
                     body: JSON.stringify(body)
                 })

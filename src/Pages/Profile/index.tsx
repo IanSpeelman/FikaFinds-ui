@@ -18,7 +18,11 @@ export default function Profile({ user }: ProfileProps) {
 
     useEffect(() => {
         async function getOrders() {
-            const response = await fetch(`${host}/orders/user/${user?.id}`)
+            const response = await fetch(`${host}/orders/user/${user?.id}`, {
+                headers: {
+                    'Authorization': localStorage.getItem('Authorization-token') || ''
+                },
+            })
             if (response.ok) {
                 const data = await response.json()
                 setOrders(data)
