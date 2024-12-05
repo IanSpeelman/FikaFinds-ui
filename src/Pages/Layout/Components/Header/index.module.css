@@ -6,6 +6,7 @@
 }
 
 .title{
+    position: relative;
     display: inline;
     font-size: 28px;
 }
@@ -16,6 +17,7 @@
 }
 
 .li{
+    position: relative;
     margin-top: 0;
     list-style: none;
 }

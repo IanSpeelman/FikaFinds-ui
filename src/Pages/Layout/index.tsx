@@ -5,6 +5,7 @@ import { notificationItem, shoppingCartType } from "../../utils/types"
 import Notification from "../../Components/Notification"
 import { user } from "../../utils/types"
 import { SetStateAction } from "react"
+import styles from './index.module.css'
 
 
 type LayoutProps = {
@@ -17,11 +18,11 @@ type LayoutProps = {
 
 export default function Layout({ user, setToken, notification, shoppingCart }: LayoutProps) {
     return (
-        <>
+        <div className={styles.container}>
             <Notification notification={notification} />
             <Header user={user} setToken={setToken} shoppingCart={shoppingCart} notificationItem={notification} />
             <Outlet />
             <Footer />
-        </>
+        </div>
     )
 }
