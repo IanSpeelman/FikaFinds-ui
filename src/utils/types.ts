@@ -38,9 +38,10 @@ export type shoppingCartType = {
 }
 
 export interface user extends JwtPayload {
-    id?: number;
+    id: number;
     email: string,
     firstName: string
+    exp: number
 }
 
 export interface LoginRefs {
@@ -73,7 +74,7 @@ export type orderProductResponse = {
     id: number,
     OrderId: number
     amount: number,
-    product: product
+    product: number | product
     price: number
 
 

@@ -26,12 +26,18 @@ function App() {
 
 
     useEffect(() => {
-        if (token) {
-            setUser(jwtDecode<user>(token) || null)
+
+        const decodedToken = jwtDecode<user | null>(token)
+        if (decodedToken) {
+            if (decodedToken.exp > (Math.floor(Date.now() / 1000))) {
+                setUser(jwtDecode<user>(token) || null)
+            }
+            else {
+                setUser(null)
+            }
+
         }
-        else {
-            setUser(null)
-        }
+        // if (decodedToken?.exp > (Math.floor(Date.now() / 1000))) {
     }, [token])
 
 
