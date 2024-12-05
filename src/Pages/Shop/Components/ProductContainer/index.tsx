@@ -12,18 +12,23 @@ export default function ProductContainer({ products, setProducts }: ProductConta
 
     const select = useRef<HTMLSelectElement | null>(null)
 
-
     function sortAsc() {
-        const sortedProducts = [...products];
-        sortedProducts.sort((x, y) => x.price - y.price)
-        setProducts(sortedProducts)
+        if (products.length > 0) {
+            const sortedProducts = [...products];
+            sortedProducts.sort((x, y) => x.price - y.price)
+            setProducts(sortedProducts)
+        }
     }
 
     function sortDesc() {
-        const sortedProducts = [...products];
-        sortedProducts.sort((x, y) => y.price - x.price)
-        setProducts(sortedProducts)
+        if (products.length > 0) {
+            const sortedProducts = [...products];
+            sortedProducts.sort((x, y) => y.price - x.price)
+            setProducts(sortedProducts)
+        }
+
     }
+
 
 
     function handleChange(e: React.FormEvent<HTMLSelectElement>) {
@@ -49,7 +54,7 @@ export default function ProductContainer({ products, setProducts }: ProductConta
                 </select>
             </div>
             <div className={styles.products}>
-                {products.map(product => {
+                {products.length > 0 && products.map(product => {
                     return <Product key={product.id} product={product} />
                 })}
                 {products.length === 0 && <p className={styles.noProducts}>No products found!</p>}

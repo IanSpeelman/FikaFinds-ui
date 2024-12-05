@@ -14,6 +14,9 @@ export default function Shop() {
         async function getData() {
             try {
                 const response = await fetch(`${host}/products`)
+                if (response.ok) {
+
+                }
                 const results = await response.json()
                 setProducts(results)
             } catch (err) {
