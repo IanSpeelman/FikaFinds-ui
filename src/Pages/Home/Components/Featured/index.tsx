@@ -12,23 +12,28 @@ export default function Featured() {
     useEffect(() => {
         (async () => {
 
-            const response = await fetch(`${host}/products`)
-            if (response.ok) {
-                const data = await response.json()
-                const tmp = []
-                const nums: number[] = []
-                for (let i = 0; i < 3; i++) {
-                    let num: number = Math.floor(Math.random() * data.length)
-                    while (nums.includes(num)) {
-                        num = Math.floor(Math.random() * data.length)
+            try {
+                const response = await fetch(`${host}/products`)
+                if (response.ok) {
+                    const data = await response.json()
+                    const tmp = []
+                    const nums: number[] = []
+                    for (let i = 0; i < 3; i++) {
+                        let num: number = Math.floor(Math.random() * data.length)
+                        while (nums.includes(num)) {
+                            num = Math.floor(Math.random() * data.length)
+                        }
+
+                        nums.push(num)
+                        tmp.push(data[num])
                     }
 
-                    nums.push(num)
-                    tmp.push(data[num])
+                    setFeatured(tmp)
+                    setLoading(false)
                 }
-
-                setFeatured(tmp)
-                setLoading(false)
+            }
+            catch (err) {
+                console.log(err)
             }
         })();
     }, [])

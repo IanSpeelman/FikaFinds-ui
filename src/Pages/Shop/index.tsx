@@ -12,9 +12,14 @@ export default function Shop() {
 
     useEffect(() => {
         async function getData() {
-            const response = await fetch(`${host}/products`)
-            const results = await response.json()
-            setProducts(results)
+            try {
+                const response = await fetch(`${host}/products`)
+                const results = await response.json()
+                setProducts(results)
+            } catch (err) {
+                console.log(err)
+            }
+
         }
         getData()
 
