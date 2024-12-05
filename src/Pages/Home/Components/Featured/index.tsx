@@ -16,10 +16,17 @@ export default function Featured() {
             if (response.ok) {
                 const data = await response.json()
                 const tmp = []
+                const nums: number[] = []
                 for (let i = 0; i < 3; i++) {
-                    const num = Math.floor(Math.random() * data.length)
+                    let num: number = Math.floor(Math.random() * data.length)
+                    while (nums.includes(num)) {
+                        num = Math.floor(Math.random() * data.length)
+                    }
+
+                    nums.push(num)
                     tmp.push(data[num])
                 }
+
                 setFeatured(tmp)
                 setLoading(false)
             }
