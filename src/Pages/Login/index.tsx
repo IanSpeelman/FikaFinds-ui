@@ -92,6 +92,15 @@ export default function Login({ user, notification, setToken }: LoginProps) {
                 setJwt(response.headers)
                 notification.setNotification({ message: "You have been logged in!", type: "success" })
             }
+            else {
+                items.current.login.email?.classList.add(styles.error)
+                items.current.login.password?.classList.add(styles.error)
+                setTimeout(() => {
+                    items.current.login.email?.classList.remove(styles.error)
+                    items.current.login.password?.classList.remove(styles.error)
+
+                }, 1000)
+            }
         }
     }
 
