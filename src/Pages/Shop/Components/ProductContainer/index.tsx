@@ -5,10 +5,11 @@ import styles from './index.module.css'
 
 type ProductContainerProps = {
     products: product[] | []
-    setProducts: React.Dispatch<SetStateAction<product[] | []>>
+    setProducts: React.Dispatch<SetStateAction<product[] | []>>,
+    count: number
 }
 
-export default function ProductContainer({ products, setProducts }: ProductContainerProps) {
+export default function ProductContainer({ products, setProducts, count }: ProductContainerProps) {
 
     const select = useRef<HTMLSelectElement | null>(null)
 
@@ -47,7 +48,8 @@ export default function ProductContainer({ products, setProducts }: ProductConta
     return (
         <div className={styles.container}>
             <div className={styles.toprow}>
-                <p className={styles.results}>Showing all {products?.length} results</p>
+                {products.length === count && <p className={styles.results}>Showing all {products?.length} results</p>}
+                {products.length !== count && <p className={styles.results}>Showing {products?.length} results</p>}
                 <select ref={select} className={styles.select} onChange={(e) => handleChange(e)}>
                     <option value="priceasc">price ascending</option>
                     <option value="pricedesc">price descending</option>

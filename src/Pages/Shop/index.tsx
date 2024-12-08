@@ -9,6 +9,7 @@ const host = import.meta.env.VITE_PRODUCT_HOST
 export default function Shop() {
 
     const [products, setProducts] = useState<product[] | []>([])
+    const [count, setCount] = useState(0)
 
     useEffect(() => {
         async function getData() {
@@ -19,6 +20,7 @@ export default function Shop() {
                 }
                 const results = await response.json()
                 setProducts(results)
+                setCount(results.length)
             } catch (err) {
                 console.log(err)
             }
@@ -35,7 +37,7 @@ export default function Shop() {
             <div className={styles.container}>
                 <Filter products={products} setProducts={setProducts} />
                 <div className={styles.line}></div>
-                <ProductContainer products={products} setProducts={setProducts} />
+                <ProductContainer products={products} setProducts={setProducts} count={count} />
             </div>
         </>
     )
