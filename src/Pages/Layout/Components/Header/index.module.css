@@ -12,6 +12,7 @@
 }
 
 .ul{
+    z-index: 1000;
     display: flex;
     gap: 32px;
 }
