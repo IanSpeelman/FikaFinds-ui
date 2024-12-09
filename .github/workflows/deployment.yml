@@ -22,3 +22,4 @@ jobs:
           password: ${{ secrets.PASS }}
           key: ${{ secrets.KEY }}
           script: ANSIBLE_BECOME_PASS=${{ secrets.PASS }} ansible-playbook ~/ansible/plays/deployFikaFinds.yaml --ask-become-pass
+
