@@ -27,15 +27,21 @@ function App() {
 
     useEffect(() => {
 
-        const decodedToken = jwtDecode<user | null>(token)
-        if (decodedToken) {
-            if (decodedToken.exp > (Math.floor(Date.now() / 1000))) {
-                setUser(jwtDecode<user>(token) || null)
-            }
-            else {
-                setUser(null)
+        try {
+
+            const decodedToken = jwtDecode<user | null>(token)
+            if (decodedToken) {
+                if (decodedToken.exp > (Math.floor(Date.now() / 1000))) {
+                    setUser(jwtDecode<user>(token) || null)
+                }
+                else {
+                    setUser(null)
+                }
+
             }
 
+        } catch (err) {
+            console.log(err)
         }
         // if (decodedToken?.exp > (Math.floor(Date.now() / 1000))) {
     }, [token])
