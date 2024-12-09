@@ -1,0 +1,18 @@
+name: Deploy to production
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASS }}
+          key: ${{ secrets.KEY }}
+          script: ANSIBLE_BECOME_PASS=${{ secrets.PASS }} ansible-playbook ~/ansible/plays/deployFikaFinds.yaml --ask-become-pass
