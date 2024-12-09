@@ -15,7 +15,7 @@ export default function Footer() {
                     </ul>
                 </nav>
                 <h1 className={styles.title}>FIKA FINDS</h1>
-                <p>Copyright © 2024 Fika Finds</p>
+                <p>test Copyright © 2024 Fika Finds</p>
             </div>
         </footer>
     )
